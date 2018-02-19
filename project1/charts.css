@@ -1,3 +1,11 @@
-#charts_table{
-	margin-top:50px
+body{
+	margin-top:70px;
+
+}
+table{
+	border-spacing: 30px;
+}
+
+li{
+	margin-left: 8px;
 }
