@@ -2,10 +2,12 @@
     <head>
         <title>Audio Player</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <link rel="stylesheet" href="player.css">
 
     </head>
     <body>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="#">Setlist</a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -20,78 +22,137 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Upload</button>
             </div>
         </nav>
+
+        <!-- Body -->
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-9" id="player-content">
-                    <div>
-                            <h2>Marshmello @ kineticFIELD</h2>
-                            <h4>EDC Orlando - November 10, 2017</h4>
-                    </div>
+
+                <!-- Player -->
+                <div class="col-lg-9 no-padding" id="player-content">
+                    <img class="img-fluid" src="http://photo.rukes.com/umfbr17a/umfbr17a_134.jpg" />
                 </div>
+
+                <!-- Playlist -->
                 <nav class="col-lg-3 d-md-block bg-light sidebar no-padding" id="tracklist-sidebar">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Alone</h6>
-                                <a href="#"><small>0:00</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Alone</h6>
+                                    <p class="mb-1">Marshmello</p>            
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-spotify"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-apple"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-soundcloud"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-youtube"></i></button>
+                                    </div>                        
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>0:00</small></a>
                             </div>
-                            <p class="mb-1">Marshmello</p>
                         </li>
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Jungle Bae</h6>
-                                <a href="#"><small>3:12</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Jungle Bae</h6>
+                                    <p class="mb-1">Jack Ü feat. Benji Garlin</p>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-spotify"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-apple"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-soundcloud"></i></button>
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>3:12</small></a>
                             </div>
-                            <p class="mb-1">Jack Ü feat. Benji Garlin</p>
                         </li>
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Find Me</h6>
-                                <a href="#"><small>4:47</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Find Me</h6>
+                                    <p class="mb-1">Marshmello</p>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-spotify"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-apple"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-soundcloud"></i></button>
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>4:47</small></a>
                             </div>
-                            <p class="mb-1">Marshmello</p>
                         </li>
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Propaganda</h6>
-                                <a href="#"><small>6:13</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Propaganda</h6>
+                                    <p class="mb-1">DJ Snake</p>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-spotify"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-apple"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-soundcloud"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-youtube"></i></button>
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>6:13</small></a>
                             </div>
-                            <p class="mb-1">DJ Snake</p>
                         </li>
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">A Different Way (Aazar Remix)</h6>
-                                <a href="#"><small>8:24</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">A Different Way (Aazar Remix)</h6>
+                                    <p class="mb-1">DJ Snake feat. Lauv</p>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-soundcloud"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-youtube"></i></button>
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>8:24</small></a>
                             </div>
-                            <p class="mb-1">DJ Snake feat. Lauv</p>
                         </li>
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Heads Will Roll (A-Trak Remix / Kid Kamillion Trap Edit)</h6>
-                                <a href="#"><small>9:45</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Heads Will Roll (A-Trak Remix / Kid Kamillion Trap Edit)</h6>
+                                    <p class="mb-1">Yeah Yeah Yeahs</p>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-soundcloud"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-youtube"></i></button>
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>9:45</small></a>
                             </div>
-                            <p class="mb-1">Yeah Yeah Yeahs</p>
                         </li>
                         <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Waiting For Love (Marshmello Remix)</h6>
-                                <a href="#"><small>11:37</small></a>
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Waiting For Love (Marshmello Remix)</h6>
+                                    <p class="mb-1">Avicii feat. Simon Aldred</p>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-spotify"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-apple"></i></button>
+                                        <button type="button" class="btn btn-outline-dark"><i class="fab fa-youtube"></i></button>
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>11:37</small></a>
                             </div>
-                            <p class="mb-1">Avicii feat. Simon Aldred</p>
-                        </li>
-                        <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Twinbow</h6>
-                                <a href="#"><small>12:58</small></a>
-                            </div>
-                            <p class="mb-1">Marshmello &amp; Slushii</p>
-                        </li>
-                        <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Sweet Nothing</h6>
-                                <a href="#"><small>14:07</small></a>
-                            </div>
-                            <p class="mb-1">Calvin Harris feat. Florence Welch</p>
                         </li>
                     </ul>
                 </nav>

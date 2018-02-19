@@ -3,8 +3,8 @@
     padding-right: 0px;
 }
 
-a {
-    padding-left: 10px;
+.list-group-item {
+    padding: 0.75rem 0.75rem;
 }
 
 #tracklist-sidebar {
