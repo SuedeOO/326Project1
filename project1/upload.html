@@ -12,19 +12,17 @@
 	
 	<script src="upload.js"></script>
 	
-	<script id="new-tag" type="text/html">
-		<div class="form-group row upload-tag">
-			<label class="col-sm-3 col-form-label">Edit Tag:</label>
-			<div class="col-sm-3">
-				<input type="" class="form-control tag-start" placeholder="Start Time">
-			</div>
-			<div class="col-sm-5">
-				<input type="" class="form-control tag-link" placeholder="Link">
-			</div>
-			<div class="col-sm-1">
-				<a href="#" class="btn btn-outline-success my-2 my-sm-0 remove-tag">Remove Tag</a>
-			</div>
-		</div>		
+	<script id="new-tag" type="text/html">		
+		<label class="col-sm-3 col-form-label">Edit Tag:</label>
+		<div class="col-sm-3">
+			<input type="" class="form-control tag-start" placeholder="Start Time">
+		</div>
+		<div class="col-sm-4">
+			<input type="" class="form-control tag-link" placeholder="Link">
+		</div>
+		<div class="col-sm-1">
+			<a href="#" class="btn btn-outline-success my-2 my-sm-0 remove-tag">Remove Tag</a>
+		</div>			
 	</script>
 	
 	<title>Upload Mix</title>
@@ -54,43 +52,42 @@
 		<div class="row">
 			<div class="col-lg-3"></div>
 			<div class="col-lg-6">				
-				<div class="upload-section">
-					<p>Upload File:</p>
-					<label class="btn btn-outline-success my-2 my-sm-0">Choose File<input type="file" class="form-control-file" hidden></label>
-					<a class="text-muted">No File Chosen</a>
-				</div>
-				<div class="upload-section">
-					<p>Upload Link:
-					<input type="text" class="form-control" placeholder="i.e. https://soundcloud.com/dj/mix" value=""><a href="#" class="btn btn-outline-success my-2 my-sm-0">Choose Link</a>
-					</p>
+				<div class="row">
+					<div class="upload-section col-lg-6 text-center">
+						<p>Upload File:</p>
+						<div>
+							<a class="text-muted">No File Chosen</a>
+						</div>
+						<div>
+						<label class="btn btn-outline-success my-2 my-sm-0">Choose File<input type="file" class="form-control-file" hidden></label>
+						</div>
+					</div>
+					<div class="upload-section col-lg-6 text-center">
+						<p>Upload Link:</p>
+						<div>
+							<input type="text" class="form-control" placeholder="i.e. https://soundcloud.com/dj/mix" value="">
+						</div>
+						<div>
+							<a href="#" class="btn btn-outline-success my-2 my-sm-0">Choose Link</a>
+						</div>												
+					</div>
 				</div>
 				<div class="upload-section">
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label">Title:</label>
 						<div class="col-sm-9">
-							<input type="" class="form-control" id="tag1-start" placeholder="">
+							<input type="" class="form-control" id="title" placeholder="">
 						</div>
 					</div>	
 					<div class="form-group row">					
 						<label class="col-sm-3 col-form-label">Author:</label>
 						<div class="col-sm-9">
-							<input type="" class="form-control" id="tag1-start" placeholder="(Leave black if you are the author)">
+							<input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)">
 						</div>
 					</div>
 				</div>
 				<div class="upload-section" id="upload-tags">
-					<div class="form-group row upload-tag">
-						<label class="col-sm-3 col-form-label">Edit Tag:</label>
-						<div class="col-sm-3">
-							<input type="" class="form-control tag-start" placeholder="Start Time">
-						</div>
-						<div class="col-sm-5">
-							<input type="" class="form-control tag-link" placeholder="Link">
-						</div>
-						<div class="col-sm-1">
-							<a href="#" class="btn btn-outline-success my-2 my-sm-0 remove-tag">Remove Tag</a>
-						</div>
-					</div>
+					
 				</div>
 				<div class="upload-section">
 					<a href="#" class="btn btn-outline-success my-2 my-sm-0" onclick="addTag()" id="add-tag">Add Tag</a>

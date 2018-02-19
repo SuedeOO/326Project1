@@ -8,3 +8,7 @@ function addTag(){
 	tags.appendChild(new_tag);
 }
 
+function removeTag(){
+	
+}
+
