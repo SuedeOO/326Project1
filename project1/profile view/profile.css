@@ -1,15 +1,7 @@
-/*
- * Base structure
- */
 
-/* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
 }
-
-/*
- * Typography
- */
 
 h1 {
   margin-bottom: 20px;
@@ -45,18 +37,6 @@ a[href*="#1"] {
   padding-right: 0;
 }
 
-.sidebar .nav {
-  margin-bottom: 20px;
-}
-
-.sidebar .nav-item {
-  width: 100%;
-}
-
-.sidebar .nav-item + .nav-item {
-  margin-left: 0;
-}
-
 .sidebar .nav-link {
   border-radius: 0;
 }
@@ -67,11 +47,13 @@ a[href*="#1"] {
 
  /* Placeholders */
 .placeholders {
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 .placeholder img {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
 }
+
+.
 
