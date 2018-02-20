@@ -31,13 +31,35 @@
 	</nav>
 
 	<div class="container-fluid">
-		<div class="page-header">
-	    	<h1 class="text-center">Sign up</h1>      
-	    </div>
 	    <div class="row">
-		    <div class="col-lg-4">
+		    <div class="col-lg-6" id="login">
+		    	<div class="row">
+		    		<div class="col-lg-12">
+		    			<h1 class="page-header">Log in</h1>
+		    		</div>
+		    	</div>
+		    	<form>
+		    		<div class="form-group row">
+		    			<label class="control-label" for="username">Username:</label>
+		    			<input type="text" class="form-control" id="username">
+		    		</div>
+		    		<div class="form-group row">
+					    <label class="control-label" for="pwd">Password:</label>
+					    <input type="password" class="form-control" id="pwd">
+					</div>
+					<div class="form-group row">
+      					<label><input type="checkbox"> Remember me</label>
+    				</div>
+    				<button type="login" class="btn btn-default">Log In</button>
+				</form>
 		    </div>
-		    <div class="col-lg-4">
+
+		    <div class="col-lg-6" id="signup">
+		    	<div class="row">
+		    		<div class="col-lg-12">
+		    			<h1 class="page-header">Sign up</h1>
+		    		</div>
+		    	</div>
 	    		<form>
 		    		<div class="form-group row">
 		    			<label class="control-label" for="username">Username:</label>
@@ -49,16 +71,16 @@
 				  	</div>
 				  	<div class="form-group row">
 					    	<label class="control-label" for="pwd">Password:</label>
-					    	<input type="password" class="form-control" id="pwd">
+					    	<input type="text" class="form-control" id="pwd">
 					</div>
 					<div class="row">
 					  	<div class="form-inline col-lg-6">
-					  		<label>Gender:</label>
+					  		<label id="gender">Gender:</label>
 					    	<div class="radio">
-					    		<label for="gender">
+					    		<label for="gender" id="gender">
 					    		<input type="radio" name="gender" class="form-control" id="gender">Male</label>
 					    	</div>
-					    	<div class="radio">
+					    	<div class="radio" id="gender">
 					    		<label for="gender">
 					    		<input type="radio" name="gender" class="form-control" id="gender">Female</label>
 					    	</div>
@@ -68,12 +90,16 @@
 					    	<input type="text" class="form-control" id="age">
 					    </div>
 					</div>
+					<div class="row">
+						<div class="col-lg-5"></div>
+						<div class="col-lg-2">
+							<button type="button" class="btn btn-default page-header">Sign Up</button>
+						</div>
+						<div class="col-lg-5"></div>
+					</div>
 		    	</form>
-			</div>
-		    <div class="col-lg-4">
 		    </div>
-		</div>
-	</div>
-  
+	    </div>
+    </div>
   </body>
 </html>
