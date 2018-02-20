@@ -1,1 +1,26 @@
+body {
+	padding-top: 70px;
+}
 
+h1 {
+	text-align: center;
+}
+
+#gender {
+	margin-right: 2px;
+}
+
+#login {
+	border-right: 1px solid black;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+#signup {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.page-header {
+	align-items: center;
+}
