@@ -3,10 +3,20 @@ body {
   padding-top: 50px;
 }
 
+
 h1 {
   margin-bottom: 20px;
   padding-bottom: 9px;
-  border-bottom: 1px solid #eee;
+  opacity: 0;
+}
+
+h2 {
+  padding-bottom: 0px
+  color:white;
+}
+
+p {
+  color: white;
 }
 
 a[href*="#1"] {
@@ -47,12 +57,17 @@ a[href*="#1"] {
 
  /* Placeholders */
 .placeholders {
+  background: url(background.jpg);
+  background-repeat: no-repeat;
+  background-size: auto;
   padding-bottom: 2rem;
+  background-opacity:0;
 }
 
 .placeholder img {
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  position: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .
