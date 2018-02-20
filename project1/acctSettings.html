@@ -25,10 +25,55 @@
 				</li>
 			</ul>
 			<ul class = "navbar-nav navbar-right">
-				<li class = "nav-item">
-					<a class="nav-link" href="acctSettings.html">Account Settings</a>
-				</li>
+				<button class="btn btn-primary my-2 my-sm-0" type="submit">Upload</button>
 			</ul>
 		</div>
 	</nav>
+
+	<div class="container-fluid">
+		<div class="page-header">
+	    	<h1 class="text-center">Sign up</h1>      
+	    </div>
+	    <div class="row">
+		    <div class="col-lg-4">
+		    </div>
+		    <div class="col-lg-4">
+	    		<form>
+		    		<div class="form-group row">
+		    			<label class="control-label" for="username">Username:</label>
+		    			<input type="text" class="form-control" id="username">
+		    		</div>
+		    		<div class="form-group row">
+				    	<label class="control-label" for="email">Email address:</label>
+				    	<input type="email" class="form-control" id="email">
+				  	</div>
+				  	<div class="form-group row">
+					    	<label class="control-label" for="pwd">Password:</label>
+					    	<input type="password" class="form-control" id="pwd">
+					</div>
+					<div class="row">
+					  	<div class="form-inline col-lg-6">
+					  		<label>Gender:</label>
+					    	<div class="radio">
+					    		<label for="gender">
+					    		<input type="radio" name="gender" class="form-control" id="gender">Male</label>
+					    	</div>
+					    	<div class="radio">
+					    		<label for="gender">
+					    		<input type="radio" name="gender" class="form-control" id="gender">Female</label>
+					    	</div>
+					    </div>
+					    <div class="form-group col-lg-6">
+					    	<label class="control-label" for="age">Age:</label>
+					    	<input type="text" class="form-control" id="age">
+					    </div>
+					</div>
+		    	</form>
+			</div>
+		    <div class="col-lg-4">
+		    </div>
+		</div>
+	</div>
+  
   </body>
+</html>
