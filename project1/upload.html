@@ -13,22 +13,28 @@
 	<script src="upload.js"></script>
 	
 	<script id="new-tag" type="text/html">		
-		<label class="col-sm-3 col-form-label">Edit Tag:</label>
-		<div class="col-sm-3">
+		<label class="col-sm-2 col-form-label">Edit Tag:</label>
+		<div class="col-sm-2">
 			<input type="" class="form-control tag-start" placeholder="Start Time">
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-2">
 			<input type="" class="form-control tag-link" placeholder="Link">
 		</div>
+		<div class="col-sm-2">
+			<input type="" class="form-control tag-title" placeholder="Title">
+		</div>
+		<div class="col-sm-2">
+			<input type="" class="form-control tag-author" placeholder="Author">
+		</div>
 		<div class="col-sm-1">
-			<a href="#" class="btn btn-outline-success my-2 my-sm-0 remove-tag">Remove Tag</a>
+			<a class="btn btn-outline-success my-2 my-sm-0 text-muted remove-tag">Remove Tag</a>
 		</div>			
 	</script>
 	
 	<title>Upload Mix</title>
 	
   </head>
-  <body>
+  <body onload="addTag()">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 		<a class="navbar-brand" href="home.html">MixList</a>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -45,13 +51,17 @@
 	
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg">
-				<h1 class="jumbotron-heading text-center">Upload a Mix</h1>
+			<div class="col-lg-3"></div>
+			<div class="col-lg-6">
+				<h1 class="jumbotron-heading" id="upload-a-mix">Upload a Mix</h1>
 			</div>
-		</div>
+		</div>		
 		<div class="row">
 			<div class="col-lg-3"></div>
-			<div class="col-lg-6">				
+			<div class="col-lg-6">
+				<div class="font-weight-bold text-center">
+					Audio Source <hr>
+				</div>
 				<div class="row">
 					<div class="upload-section col-lg-6 text-center">
 						<p>Upload File:</p>
@@ -59,7 +69,7 @@
 							<a class="text-muted">No File Chosen</a>
 						</div>
 						<div>
-						<label class="btn btn-outline-success my-2 my-sm-0">Choose File<input type="file" class="form-control-file" hidden></label>
+						<label class="btn btn-outline-success my-2 my-sm-0 text-muted">Choose File<input type="file" class="form-control-file" hidden></label>
 						</div>
 					</div>
 					<div class="upload-section col-lg-6 text-center">
@@ -68,45 +78,52 @@
 							<input type="text" class="form-control" placeholder="i.e. https://soundcloud.com/dj/mix" value="">
 						</div>
 						<div>
-							<a href="#" class="btn btn-outline-success my-2 my-sm-0">Choose Link</a>
+							<a class="btn btn-outline-success my-2 my-sm-0 text-muted">Choose Link</a>
 						</div>												
 					</div>
+				</div>				
+				<div class="font-weight-bold text-center separator">
+					Basic Data <hr>
 				</div>
 				<div class="upload-section">
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label">Title:</label>
-						<div class="col-sm-9">
+						<label class="col-sm-2 col-form-label">Title:</label>
+						<div class="col-sm-10">
 							<input type="" class="form-control" id="title" placeholder="">
 						</div>
 					</div>	
 					<div class="form-group row">					
-						<label class="col-sm-3 col-form-label">Author:</label>
-						<div class="col-sm-9">
+						<label class="col-sm-2 col-form-label">Author:</label>
+						<div class="col-sm-10">
 							<input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)">
 						</div>
 					</div>
+				</div>
+				<div class="text-center separator">
+						<a class="font-weight-bold">Tags</a> <a class="text-muted">(tracks, articles, images, etc.)</a> <hr>
 				</div>
 				<div class="upload-section" id="upload-tags">
 					
 				</div>
 				<div class="upload-section">
-					<a href="#" class="btn btn-outline-success my-2 my-sm-0" onclick="addTag()" id="add-tag">Add Tag</a>
+					<a class="btn btn-outline-success my-2 my-sm-0 text-muted" onclick="addTag()" id="add-tag">Add Tag</a>
 				</div>
 			<div>
 			<div class="col-lg-3"></div>
 		 </div>
 		 <div class="row">
 			<div class="col-lg-12 text-center upload-section">
-				<a href="#" class="btn btn-outline-success my-2 my-sm-0">Finish Upload</a>
+				<a class="btn btn-outline-success my-2 my-sm-0 text-muted">Finish Upload</a>
 			</div>
 		</div>
 	</div>
    
 
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  -->
   </body>
 </html>

@@ -1,5 +1,6 @@
 add_tag_btn = document.getElementById('add-tag');
 
+
 function addTag(){
 	var tags = document.getElementById("upload-tags");
 	var new_tag = document.createElement('div');	
