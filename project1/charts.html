@@ -18,17 +18,19 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link active" href="#">Charts</a>
+					<a class="nav-link active" href="charts.html">Charts</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">My Profile</a>
+					<a class="nav-link" href="profile%20view/profile.html">My Profile</a>
 				</li>
 			</ul>
+			<button class="btn btn-primary my-2 my-sm-0" type="submit" onclick="upload.html">Upload
+              </button>
 		</div>
 	</nav>
 	
 <!--Dropdown menus-->
-	<table id="drop_menu" cellpadding="20">
+	<table id="filters" cellpadding="20">
 		<tr>
 			<td>
 				<div class="dropdown">
@@ -44,8 +46,22 @@
 				<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">USA
 				<span class="caret"></span></button>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu scrollable-menu">
 						<li><a href="#">All countries</a></li>
+						<li><a href="#">Afghanistan</a></li>
+						<li><a href="#">Albania</a></li>
+						<li><a href="#">Algeria</a></li>
+						<li><a href="#">Andorra</a></li>
+						<li><a href="#">Angola</a></li>
+						<li><a href="#">Antigua</a></li>
+						<li><a href="#">Argentina</a></li>
+						<li><a href="#">Armenia</a></li>
+						<li><a href="#">Aruba</a></li>
+						<li><a href="#">Australia</a></li>
+						<li><a href="#">Austria</a></li>
+						<li><a href="#">Azerbaijan</a></li>
+						<li><a href="#">Bangladesh</a></li>
+						<li><a href="#">Barbados</a></li>
 					</ul>	
 				</div>
 			</td>
@@ -53,9 +69,16 @@
 				<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">All genres
 				<span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Mix</a></li>
-						<li><a href="#">Podcast</a></li>
+					<ul class="dropdown-menu scrollable-menu">
+						<li><a href="#">Ambient</a></li>
+						<li><a href="#">Drum 'n' Bass</a></li>
+						<li><a href="#">Electronic</a></li>
+						<li><a href="#">Grime</a></li>
+						<li><a href="#">Hip Hop</a></li>
+						<li><a href="#">House</a></li>
+						<li><a href="#">Reggaeton</a></li>
+						<li><a href="#">RnB</a></li>
+						<li><a href="#">Trance</a></li>
 					</ul>	
 				</div>
 			</td>
@@ -74,7 +97,8 @@
 	</table>
 	
 <!--Charts Table-->	
-    <table class="table table-hover" id="charts_table"> 
+
+    <table class="table table-striped" id="chart"> 
 		<thead> 
 			<tr> 
 				<th>#</th> 
@@ -86,73 +110,73 @@
 		<tbody> 
 			<tr> 
 				<th scope="row">1</th> 
-				<td>Mix 1</td> 
-				<td>User 1</td> 
-				<td>Mix</td>
-				<td>10k</td>				
+				<td><a href="#1">Live at Printworks London</a></td> 
+				<td>Avalon Emerson</td> 
+				<td>Drum 'n' Bass</td>
+				<td>94.3k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">2</th> 
-				<td>Mix 2</td> 
-				<td>User 2</td> 
-				<td>Mix</td>
-				<td>9k</td>				
+				<td><a href="#1">RA.571</a></td> 
+				<td>Young Marco</td> 
+				<td>Ambient</td>
+				<td>52k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">3</th> 
-				<td>Mix 3</td> 
-				<td>User 3</td> 
-				<td>Mix</td>
-				<td>8k</td>				
+				<td><a href="#1">Discwoman</a></td> 
+				<td>Laurel Halo</td> 
+				<td>Grime</td>
+				<td>46.7k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">4</th> 
-				<td>Mix 4</td> 
-				<td>User 4</td> 
-				<td>Mix</td>
-				<td>7k</td>				
+				<td><a href="#1">RA.579</a></td> 
+				<td>Courtesy</td> 
+				<td>Tech House</td>
+				<td>43.5k</td>				
 			</tr>
 		<tr> 
 				<th scope="row">5</th> 
-				<td>Mix 5</td> 
-				<td>User 5</td> 
-				<td>Mix</td>
-				<td>6k</td>				
+				<td><a href="#1">BBSM (Hosted By: KennyMoPennies)</a></td> 
+				<td>Tony Attitude</td> 
+				<td>RnB</td>
+				<td>38.2k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">6</th> 
-				<td>Mix 6</td> 
-				<td>User 6</td> 
-				<td>Mix</td>
-				<td>5k</td>				
+				<td><a href="#1">SWALLA BEATS</a></td> 
+				<td>DJ STEVE B1-one</td> 
+				<td>Reggaeton</td>
+				<td>32.6k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">7</th> 
-				<td>Mix 7</td> 
-				<td>User 7</td> 
-				<td>Mix</td>
-				<td>4k</td>				
+				<td><a href="#1">February DJ Mix 2018n</a></td> 
+				<td>Saloky</td> 
+				<td>House</td>
+				<td>27.3k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">8</th> 
-				<td>Mix 8</td> 
-				<td>User 8</td> 
-				<td>Mix</td>
-				<td>3k</td>				
+				<td><a href="#1">Select Cuts: Albuquerque</a></td> 
+				<td>When We Dip</td> 
+				<td>Electronic</td>
+				<td>23.8k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">9</th> 
-				<td>Mix 9</td> 
-				<td>User 9</td> 
-				<td>Mix</td>
-				<td>2k</td>				
+				<td><a href="#1">Lost in Psy 018</a></td> 
+				<td>Pulsar</td> 
+				<td>Trance</td>
+				<td>18.7k</td>				
 			</tr>
 			<tr> 
 				<th scope="row">10</th> 
-				<td>Mix 10</td> 
-				<td>User 10</td> 
-				<td>Mix</td>
-				<td>1k</td>				
+				<td><a href="#1">Textures Of Me 27</a></td> 
+				<td>Paul Sawyer</td> 
+				<td>Progressive House</td>
+				<td>14.6k</td>				
 			</tr>			
 		</tbody> 
 	</table>
