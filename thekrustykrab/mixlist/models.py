@@ -26,17 +26,17 @@ class Track(models.Model):
     extra_info = models.CharField(max_length = 100) #remixer, etc.
     links = models.ManyToManyField('ExternalLink')
     reference_count = models.IntegerField() #how mixes reference this track
-	
-	def __str__(self):
-		return str(self.artist) + " - " + str(self.title)
+    
+    def __str__(self):
+        return str(self.artist) + " - " + str(self.title)
     
 class ExternalLink(models.Model):
     """
     A link to where a track can be found elsewhere on the internet.
     """
-	provider = models.CharField(max_length = 50)
-	url = models.URLField(max_length = 200)
-	
-	def __str__(self):
-		return self.url
+    provider = models.CharField(max_length = 50)
+    url = models.URLField(max_length = 200)
+    
+    def __str__(self):
+        return self.url
     
