@@ -5,13 +5,14 @@ class Mix(models.Model):
     '''
     Represents a Mix, an audio file uploaded with associated metadata tags
     '''
-    audio_file = models.FileField()
-    title = models.CharField(max_length=50)
+    audio_file = models.FileField() # TODO: Pass in a storage param
+    title = models.CharField(max_length=80)
+    slug = models.SlugField() # title_of_song_with_underscores_as_spaces
     # uploader = models.ForeignKey('User', on_delete=models.CASCADE)
     length = models.DurationField()
-    upload_date = models.DateTimeField()
+    upload_date = models.DateTimeField(auto_now_add=True)
     play_count = models.IntegerField()
-    # playlist = ...
+    playlist = models.ManyToManyField('Track')
 
     def __str__(self):
         return self.title
@@ -23,7 +24,7 @@ class Track(models.Model):
     """
     title = models.CharField(max_length = 100)
     artist = models.CharField(max_length = 50)
-    extra_info = models.CharField(max_length = 100) #remixer, etc.
+    extra_info = models.CharField(max_length = 100, blank=True, null=True) #remixer, etc.
     links = models.ManyToManyField('ExternalLink')
     reference_count = models.IntegerField() #how mixes reference this track
     

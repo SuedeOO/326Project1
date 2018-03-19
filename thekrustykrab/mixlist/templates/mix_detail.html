@@ -1,0 +1,60 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row">
+            <!-- body content -->
+            <div class="col-md-9">
+                <h3>{{mix.title}}</h2>
+                <h5>{{mix.upload_date}}</h4>
+            </div>
+
+            <div class="col-md-3 pre-scrollable no-padding">
+                <ul class="list-group list-group-flush">
+                    {% for track in mix.playlist.all %}
+                        <li class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-start">
+                                <div class="py-2 pr-3 text-dark">
+                                    <i class="fas fa-music fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">{{track.title}}</h6>
+                                    <p class="mb-1">{{track.artist}}</p>            
+                                    <div class="btn-group btn-group-sm" role="group">
+                                    {% for link in track.links.all %}
+                                        {% if link.provider == "Spotify" %}
+                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-spotify"></i></a>
+                                        {% endif %}
+                                        {% if link.provider == "Apple Music" %}
+                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-apple"></i></a>
+                                        {% endif %}
+                                        {% if link.provider == "SoundCloud" %}
+                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-soundcloud"></i></a>
+                                        {% endif %}
+                                        {% if link.provider == "YouTube" %}
+                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-youtube"></i></a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </div>    
+                                </div>
+                                <a class="ml-auto pl-2" href="#"><small>0:00</small></a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- player -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-bottom bg-light">
+        <div class="navbar-text">
+            <audio controls>
+                <source src="{{mix.audio_file.url}}">
+            </audio>
+        </div>
+    </nav>
+{% endblock %}

@@ -1,0 +1,14 @@
+/* padding for navbar */
+body {
+    padding-top: 56px;
+}
+
+.no-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* used to make playlist sidebar the height of the area between navbars */
+.pre-scrollable {
+    max-height: calc(100vh - 112px);
+}
