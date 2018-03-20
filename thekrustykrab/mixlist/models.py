@@ -41,11 +41,11 @@ class ExternalLink(models.Model):
     def __str__(self):
         return self.url
 
-from django.contrib.auth.models import User
-class CustomUser(User):
-    """
-    User/ user fields
-    """
+
+#from django.contrib.auth.models import User
+class CustomUser(models.Model):
+    pass
+"""
     #profile_image = models.ImageField() #TODO: param
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
@@ -53,3 +53,4 @@ class CustomUser(User):
     #favorites = models.ManyToManyField('Mix', blank=True)
     def __str__(self):
         return self.username
+"""
