@@ -12,3 +12,35 @@ body {
 .pre-scrollable {
     max-height: calc(100vh - 112px);
 }
+
+.card {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.card-body {
+    padding: 0.75rem;
+}
+
+.card-body p {
+    font-size: 0.8rem;
+}
+
+.card-body h6 {
+    font-size: 0.9rem;
+}
+
+.sidebar {
+    box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1);
+    padding-bottom: 6px;
+}
+
+.progress {
+    height: 0.8rem;
+}
+
+.progress-label {
+    font-size: 14px;
+    float: left;
+    margin-right: 1em;
+}

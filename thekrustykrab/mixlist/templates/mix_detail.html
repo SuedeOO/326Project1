@@ -1,7 +1,13 @@
 {% extends "base_generic.html" %}
 
-{% block content %}
+{% load static %}
 
+{% block javascript %}
+<script src="{% static 'mixlist/player.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
 <div class="container-fluid">
         <div class="row">
             <!-- body content -->
@@ -10,51 +16,70 @@
                 <h5>{{mix.upload_date}}</h4>
             </div>
 
-            <div class="col-md-3 pre-scrollable no-padding">
-                <ul class="list-group list-group-flush">
-                    {% for track in mix.playlist.all %}
-                        <li class="list-group-item flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-start">
-                                <div class="py-2 pr-3 text-dark">
-                                    <i class="fas fa-music fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-0">{{track.title}}</h6>
-                                    <p class="mb-1">{{track.artist}}</p>            
-                                    <div class="btn-group btn-group-sm" role="group">
-                                    {% for link in track.links.all %}
-                                        {% if link.provider == "Spotify" %}
-                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-spotify"></i></a>
-                                        {% endif %}
-                                        {% if link.provider == "Apple Music" %}
-                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-apple"></i></a>
-                                        {% endif %}
-                                        {% if link.provider == "SoundCloud" %}
-                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-soundcloud"></i></a>
-                                        {% endif %}
-                                        {% if link.provider == "YouTube" %}
-                                            <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-youtube"></i></a>
-                                        {% endif %}
-                                    {% endfor %}
-                                    </div>    
-                                </div>
-                                <a class="ml-auto pl-2" href="#"><small>0:00</small></a>
+            <div class="col-md-3 pre-scrollable d-none d-md-block bg-light sidebar">
+                {% for track in mix.playlist.all %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex w-100 justify-content-start">
+                            <div class="py-2 pr-3 text-dark">
+                                <i class="fas fa-music fa-lg"></i>
                             </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-
+                            <div>
+                                <h6 class="mb-0">{{track.title}}</h6>
+                                <p class="mb-1 font-weight-light">{{track.artist}}</p>            
+                                <div class="btn-group btn-group-sm" role="group">
+                                {% for link in track.links.all %}
+                                    {% if link.provider == "Spotify" %}
+                                        <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-spotify"></i></a>
+                                    {% endif %}
+                                    {% if link.provider == "Apple Music" %}
+                                        <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-apple"></i></a>
+                                    {% endif %}
+                                    {% if link.provider == "SoundCloud" %}
+                                        <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-soundcloud"></i></a>
+                                    {% endif %}
+                                    {% if link.provider == "YouTube" %}
+                                        <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-youtube"></i></a>
+                                    {% endif %}
+                                {% endfor %}
+                                </div>    
+                            </div>
+                            <a class="ml-auto pl-2" href="#"><small>0:00</small></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
             
         </div>
     </div>
 
-    <!-- player -->
+    <!-- player bottom bar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-bottom bg-light">
-        <div class="navbar-text">
-            <audio controls>
-                <source src="{{mix.audio_file.url}}">
-            </audio>
+        <!-- audio file -->
+        <audio id="audioFile">
+            <source src="{{mix.audio_file.url}}">
+        </audio>
+
+        <div class="navbar-brand col-sm-3"></div>
+        <div class="col-sm-6 my-2">
+                <!-- controls -->
+                <div class="controls d-flex justify-content-center">
+                    <i class="fas fa-lg fa-step-backward mx-3 text-dark"></i>
+                    <a class="fas fa-lg fa-play mx-3 text-dark" onclick="togglePlay(this)"></a>
+                    <i class="fas fa-lg fa-step-forward mx-3 text-dark"></i>
+                </div>
+
+                <!-- progress bar -->
+                <div class="py-2">
+                    <a class="progress-label align-top" id="duration">0:00</a>
+                    <div class="progress mt-1">
+                        <div class="progress-bar" role="progressbar" style="width: 25%"></div>
+                    </div>
+                </div>
+
         </div>
+        <div class="col-sm-3"></div>
+
     </nav>
 {% endblock %}
