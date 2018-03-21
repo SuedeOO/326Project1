@@ -10,7 +10,7 @@ body {
 
 /* used to make playlist sidebar the height of the area between navbars */
 .pre-scrollable {
-    max-height: calc(100vh - 112px);
+    max-height: calc(100vh - 142px);
 }
 
 .card {
