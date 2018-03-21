@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from thekrustykrab.settings_secrets import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'mixlist.apps.MixlistConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,12 @@ STATIC_URL = '/static/'
 # Media files (user uploads)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+AWS_STORAGE_BUCKET_NAME = 'mixlist'
+AWS_S3_ENDPOINT_URL = 'https://nyc3.digitaloceanspaces.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'mixlist'
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+DEFAULT_FILE_STORAGE = 'thekrustykrab.storage_backends.MediaStorage'  # <-- here is where we reference it

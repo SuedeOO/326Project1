@@ -103,3 +103,5 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+thekrustykrab/thekrustykrab/settings_secrets.py
