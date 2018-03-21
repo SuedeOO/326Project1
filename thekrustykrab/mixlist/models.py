@@ -43,14 +43,13 @@ class ExternalLink(models.Model):
 
 
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     #profile_image = models.ImageField() #TODO: param
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
-    #following = models.ManyToManyField('CustomUser', blank=True, null=True)
+    following = models.ManyToManyField('self', blank=True, null=True)
     #favorites = models.ManyToManyField('Mix', blank=True)
-    list_display = ('user', 'location')
+    def __str__(self):
+        return self.user.username
