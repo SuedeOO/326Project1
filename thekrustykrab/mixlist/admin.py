@@ -8,4 +8,6 @@ admin.site.register(ExternalLink)
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'location')
+	#displays username, full name, and email when 
+	#looking at profiles in admin view
+    list_display = ('user', 'full_name', 'email')
