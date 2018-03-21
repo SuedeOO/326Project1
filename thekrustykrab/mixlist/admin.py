@@ -11,3 +11,13 @@ class ProfileAdmin(admin.ModelAdmin):
 	#displays username, full name, and email when 
 	#looking at profiles in admin view
     list_display = ('user', 'full_name', 'email')
+
+    #separates different pieces for admin page
+    fieldsets = (
+    	(None, {
+    		'fields': ('user', 'location', 'about_me')
+    	}),
+    	('Profile Lists', {
+    		'fields': [('following', 'favorites')]
+    	}),
+    )

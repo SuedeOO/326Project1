@@ -51,14 +51,16 @@ class Profile(models.Model):
     #profile_image = models.ImageField() #TODO: param
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
+    #page of liked profiles
     following = models.ManyToManyField('self', blank=True)
-    #favorites = models.ManyToManyField('Mix', blank=True)
+    #page of mixes
+    favorites = models.ManyToManyField('Mix', blank=True)
     def __str__(self):
         return self.user.get_username()
-
+    #for admin view
     def full_name(self):
         return self.user.get_full_name()
-
+    #for admin view
     def email(self):
         return self.user.email
 
