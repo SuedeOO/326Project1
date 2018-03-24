@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-md-3 pre-scrollable d-none d-md-block bg-light sidebar">
-                {% for track in mix.playlist.all %}
+                {% for member in mix.playlistmembership_set.all %}
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex w-100 justify-content-start">
@@ -25,10 +25,10 @@
                                 <i class="fas fa-music fa-lg"></i>
                             </div>
                             <div>
-                                <h6 class="mb-0">{{track.title}}</h6>
-                                <p class="mb-1 font-weight-light">{{track.artist}}</p>            
+                                <h6 class="mb-0">{{member.track.title}}</h6>
+                                <p class="mb-1 font-weight-light">{{member.track.artist}}</p>            
                                 <div class="btn-group btn-group-sm" role="group">
-                                {% for link in track.links.all %}
+                                {% for link in member.track.links.all %}
                                     {% if link.provider == "Spotify" %}
                                         <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-spotify"></i></a>
                                     {% endif %}
@@ -44,7 +44,7 @@
                                 {% endfor %}
                                 </div>    
                             </div>
-                            <a class="ml-auto pl-2" href="#"><small>0:00</small></a>
+                            <a class="ml-auto pl-2" href="#"><small>{{member.time|time:"H:i"}}</small></a>
                         </div>
                     </div>
                 </div>
