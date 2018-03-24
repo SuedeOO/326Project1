@@ -42,5 +42,6 @@ body {
 .progress-label {
     font-size: 14px;
     float: left;
-    margin-right: 1em;
+    margin-right: 0.5em;
+    width: 40px;
 }

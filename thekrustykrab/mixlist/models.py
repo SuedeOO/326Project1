@@ -66,8 +66,15 @@ class ExternalLink(models.Model):
     """
     A link to where a track can be found elsewhere on the internet.
     """
+    CHOICES = (
+        ('SPOTIFY', 'Spotify'),
+        ('SOUNDCLOUD','SoundCloud'),
+        ('APPLEMUSIC','Apple Music'),
+        ('YOUTUBE', 'YouTube'),
+        ('OTHER', 'Other')
+    )
     track = models.ForeignKey(Track, on_delete=models.CASCADE, related_name='links')
-    provider = models.CharField(max_length = 50)
+    provider = models.CharField(choices=CHOICES, max_length=50)
     url = models.URLField(max_length = 200)
     
     def __str__(self):
@@ -81,7 +88,7 @@ class PlaylistMembership(models.Model):
     mix = models.ForeignKey(Mix, on_delete=models.CASCADE)
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
     # the time in the mix that the track occurs
-    time = models.TimeField() 
+    time = models.DurationField() 
 
     def __str__(self):
         return str(self.mix.title) + '--' + str(self.track.title) + '@' + str(self.time)

@@ -2,12 +2,20 @@ from django.contrib import admin
 from .models import Mix, Track, ExternalLink, PlaylistMembership, Profile
 
 # Register your models here.
-admin.site.register(Track)
 admin.site.register(ExternalLink)
 
 class PlaylistMembershipInline(admin.TabularInline):
     model = PlaylistMembership
     extra = 1
+
+class ExternalLinkInline(admin.TabularInline):
+	model = ExternalLink
+	extra = 1
+
+@admin.register(Track)
+class TrackAdmin(admin.ModelAdmin):
+	inlines = (ExternalLinkInline,)
+	extra = 1
 
 @admin.register(Mix)
 class MixAdmin(admin.ModelAdmin):
