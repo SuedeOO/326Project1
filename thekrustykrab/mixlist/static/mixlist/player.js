@@ -4,7 +4,7 @@ let trackTimestamps = document.getElementsByClassName('track-time');
 
 for (var i = 0; i < trackTimestamps.length; i++) {
     trackTimestamps[i].onclick = (aTag) => {
-        let seconds = parseInt(aTag.target.parentNode.dataset.time);
+        let seconds = parseInt(aTag.target.dataset.time);
         file.currentTime = seconds;
     }
 }
