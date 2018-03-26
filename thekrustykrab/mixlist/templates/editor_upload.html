@@ -1,0 +1,52 @@
+{% extends "editor_generic.html" %}
+
+{% block title %}<title>Upload Mix</title>{% endblock %}
+
+{% block heading %}Upload Mix{% endblock %}
+
+{% block file %}
+	<div class="font-weight-bold text-center">
+		Audio Source <hr>
+	</div>
+	<div class="row">
+		<div class="upload-section col-lg-6 text-center">
+			<p>Upload File:</p>
+			<div>
+				<a class="text-muted">No File Chosen</a>
+			</div>
+			<div>
+			<label class="btn btn-outline-success my-2 my-sm-0 text-muted">Choose File<input type="file" class="form-control-file" hidden></label>
+			</div>
+		</div>
+		<div class="upload-section col-lg-6 text-center">
+			<p>Upload Link:</p>
+			<div>
+				<input type="text" class="form-control" placeholder="i.e. https://soundcloud.com/dj/mix" value="">
+			</div>
+			<div>
+				<a class="btn btn-outline-success my-2 my-sm-0 text-muted">Choose Link</a>
+			</div>												
+		</div>
+	</div>	
+{% endblock %}
+
+{% block tags %}
+	<div class="tag">
+		<label class="col-sm-2 col-form-label">Edit Tag:</label>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-start" placeholder="Start Time">
+		</div>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-link" placeholder="Link">						
+		</div>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-title" placeholder="Title">
+		</div>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-author" placeholder="Author">
+		</div>
+		<div class="col-sm-1">
+			<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
+		</div>	
+	</div>
+{% endblock %}

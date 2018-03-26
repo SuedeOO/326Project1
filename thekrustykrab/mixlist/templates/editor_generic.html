@@ -13,13 +13,13 @@
 	<div class="row">
 		<div class="col-lg-3"></div>
 		<div class="col-lg-6">
-			<h1 class="jumbotron-heading" id="upload-a-mix">Edit Mix</h1>
+			<h1 class="jumbotron-heading" id="upload-a-mix">{% block heading %}{% endblock %}</h1>
 		</div>
 	</div>		
 	<div class="row">
 		<div class="col-lg-3"></div>
 		<div class="col-lg-6">
-						
+			{% block file %}{% endblock %}
 			<div class="font-weight-bold text-center separator">
 				Basic Data <hr>
 			</div>
@@ -41,26 +41,7 @@
 					<a class="font-weight-bold">Tags</a> <a class="text-muted">(tracks, articles, images, etc.)</a> <hr>
 			</div>
 			<div class="upload-section" id="tags">
-				{% for member in mix.playlistmembership_set.all %}
-					<div class="tag">
-						<label class="col-sm-2 col-form-label">Edit Tag:</label>
-						<div class="col-sm-12">
-							<input type="" class="form-control tag-start" placeholder="Start Time" value="{{member.time}}">
-						</div>
-						<div class="col-sm-12">
-							<input type="" class="form-control tag-link" placeholder="Link" value="{{member.track.getLinks}}">						
-						</div>
-						<div class="col-sm-12">
-							<input type="" class="form-control tag-title" placeholder="Title" value="{{member.track.title}}">
-						</div>
-						<div class="col-sm-12">
-							<input type="" class="form-control tag-author" placeholder="Author" value="{{member.track.artist}}">
-						</div>
-						<div class="col-sm-1">
-							<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
-						</div>	
-					</div>
-				{% endfor %}
+				{% block tags %}{% endblock %}
 			</div>
 			<div class="upload-section">
 				<a class="btn btn-outline-success my-2 my-sm-0 text-muted" id="tag-add">Add Tag</a>

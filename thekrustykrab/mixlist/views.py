@@ -9,5 +9,8 @@ class MixView(generic.DetailView):
 
 
 class EditMixView(generic.DetailView):
-	model = Mix
-	template_name = 'mix_edit.html'
+    model = Mix
+    template_name = 'editor_edit.html'
+    
+class UploadMixView(generic.TemplateView):
+    template_name = 'editor_upload.html'
