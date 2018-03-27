@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mixlist.views import MixView, ProfileView
+from mixlist.views import MixView, ProfileView, UploadMixView, EditMixView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mix/<slug:slug>', MixView.as_view(), name='mix-detail'),
     path('profile/<int:pk>', ProfileView.as_view(), name='profile'),
+	path('upload', UploadMixView.as_view(), name='upload-mix'),
+    path('edit/<slug:slug>', EditMixView.as_view(), name='edit-mix'),
 ]
 
 # Use include() to add paths from the catalog application 

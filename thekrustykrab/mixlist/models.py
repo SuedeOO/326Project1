@@ -60,10 +60,10 @@ class Track(models.Model):
     extra_info = models.CharField(max_length = 100, blank=True, null=True) #remixer, etc.
     reference_count = models.IntegerField() #how mixes reference this track
     
-    def getLinks(self):
-        combined = ""
+    def get_links(self):        
         links = self.links.all()
         if links:
+            combined = ""
             for link in links:
                 combined += link.url + ";"
             return combined.rstrip(";")
