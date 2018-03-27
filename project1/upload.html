@@ -8,33 +8,33 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-	<link href="upload.css" rel="stylesheet">
+	<link href="upload.css" rel="stylesheet">		
 	
-	<script src="upload.js"></script>
-	
-	<script id="new-tag" type="text/html">		
-		<label class="col-sm-2 col-form-label">Edit Tag:</label>
-		<div class="col-sm-2">
-			<input type="" class="form-control tag-start" placeholder="Start Time">
+	<script class="tag-new" type="text/html">	
+		<div class="tag">
+			<label class="col-sm-2 col-form-label">Edit Tag:</label>
+			<div class="col-sm-2">
+				<input type="" class="form-control tag-start" placeholder="Start Time" value="NEWTAG">
+			</div>
+			<div class="col-sm-2">
+				<input type="" class="form-control tag-link" placeholder="Link">
+			</div>
+			<div class="col-sm-2">
+				<input type="" class="form-control tag-title" placeholder="Title">
+			</div>
+			<div class="col-sm-2">
+				<input type="" class="form-control tag-author" placeholder="Author">
+			</div>
+			<div class="col-sm-1 tag-remove">
+				<a class="btn btn-outline-success my-2 my-sm-0 text-muted remove-tag">Remove Tag</a>
+			</div>
 		</div>
-		<div class="col-sm-2">
-			<input type="" class="form-control tag-link" placeholder="Link">
-		</div>
-		<div class="col-sm-2">
-			<input type="" class="form-control tag-title" placeholder="Title">
-		</div>
-		<div class="col-sm-2">
-			<input type="" class="form-control tag-author" placeholder="Author">
-		</div>
-		<div class="col-sm-1">
-			<a class="btn btn-outline-success my-2 my-sm-0 text-muted remove-tag">Remove Tag</a>
-		</div>			
 	</script>
 	
 	<title>Upload Mix</title>
 	
   </head>
-  <body onload="addTag()">
+  <body>
 	  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 		<a class="navbar-brand" href="home.html">MixList</a>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -102,11 +102,28 @@
 				<div class="text-center separator">
 						<a class="font-weight-bold">Tags</a> <a class="text-muted">(tracks, articles, images, etc.)</a> <hr>
 				</div>
-				<div class="upload-section" id="upload-tags">
-					
+				<div class="upload-section tags">
+					<div class="tag">
+						<label class="col-sm-2 col-form-label">Edit Tag:</label>
+						<div class="col-sm-2">
+							<input type="" class="form-control tag-start" placeholder="Start Time">
+						</div>
+						<div class="col-sm-2">
+							<input type="" class="form-control tag-link" placeholder="Link">
+						</div>
+						<div class="col-sm-2">
+							<input type="" class="form-control tag-title" placeholder="Title">
+						</div>
+						<div class="col-sm-2">
+							<input type="" class="form-control tag-author" placeholder="Author">
+						</div>
+						<div class="col-sm-1">
+							<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
+						</div>
+					</div>
 				</div>
 				<div class="upload-section">
-					<a class="btn btn-outline-success my-2 my-sm-0 text-muted" onclick="addTag()" id="add-tag">Add Tag</a>
+					<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-add">Add Tag</a>
 				</div>
 			<div>
 			<div class="col-lg-3"></div>
@@ -118,7 +135,10 @@
 		</div>
 	</div>
    
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="upload.js"></script>
+	
+   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block title%}<title>Profile</title>{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>Username: {{ profile.user.username}}</h1>
+    <h1>First Name: {{ profile.user.first_name }}</h1>
+    <h1>Last Name: {{ profile.user.last_name }}</h1>
+    <h1>Full Name: {{ profile.user.get_full_name }}</h1>
+    <h1>Date Joined: {{ profile.user.date_joined }}</h1>
+    <h1>Location: {{ profile.location }}</h1>
+    <h1>About me: {{ profile.about_me }}</h1>
+    <h1>Email: {{ profile.user.email }}</h1>
+    <ul>
+    	{% for profile in profile.following.all %}
+    	<li>{{ profile.user.username }}</li>
+    	{% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
