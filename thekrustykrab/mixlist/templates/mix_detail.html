@@ -2,12 +2,17 @@
 
 {% load static %}
 
+<!-- css for this page -->
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'mixlist/mix_detail.css' %}" />
 {% endblock %}
 
+<!-- javascript for this page -->
 {% block javascript %}
 <script src="{% static 'mixlist/player.js' %}"></script>
+<script type="text/javascript">
+    let playlist = {{playlist|safe}};
+</script>
 {% endblock %}
 
 
@@ -29,13 +34,13 @@
                                         <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
                                     </small>
                                     <small>
-                                        <i class="fas fa-headphones mr-2"></i>14,148 Listens
+                                        <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
                                     </small>
                                     <small>
-                                        <i class="fas fa-heart mr-2"></i>127 Likes
+                                        <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
                                     </small>
                                 </div>
-                                <p>This is a mix I put together for BBC Radio 1 Extra with all of the hottest tracks of 2013. From hip-hop jams to dance hits, this hour long mix has your favorite songs from the past year. Check it out.</p>
+                                <p>{{mix.description}}</p>
                             </div>
                         </div>
                         <!-- card image -->
@@ -74,9 +79,11 @@
                     <h6 class="card-header">Now Playing</h6>
                     <div class="card-body">
                         <h5 class="card-title">Wild For The Night</h5>
-                        <p class="card-subtitle mb-2">A$AP Rocky, Skrillex, Birdy Nam Nam</p>
-                        <button type="button" class="btn btn-primary btn-sm">Small button</button>
-                        <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+                        <h6 class="card-subtitle font-weight-light mb-2">A$AP Rocky, Skrillex, Birdy Nam Nam</h6>
+                        <button type="button" class="btn btn-success btn-sm">Spotify</button>
+                        <button type="button" class="btn btn-warning btn-sm">SoundCloud</button>
+                        <button type="button" class="btn btn-danger btn-sm">YouTube</button>
+
                     </div>
                 </div>
 
@@ -128,5 +135,4 @@
         </div>
     </div>
 
-    <!-- player bottom bar -->
 {% endblock %}
