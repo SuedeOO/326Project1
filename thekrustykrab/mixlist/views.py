@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Mix
+from .models import Mix, Profile
 
 # Create your views here.
 class MixView(generic.DetailView):
