@@ -6,6 +6,12 @@ from .models import Mix, Profile
 class MixView(generic.DetailView):
     model = Mix
     template_name = 'mix_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(MixView, self).get_context_data(**kwargs)
+        context['playlist'] = ['this', 'is', 'array']
+        return context
+
 
 class EditMixView(generic.DetailView):
     model = Mix

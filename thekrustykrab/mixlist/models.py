@@ -42,6 +42,8 @@ class Mix(models.Model):
     uploader = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="mixes")
     length = models.DurationField()
     upload_date = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=200, blank=True, null=True)
+    like_count = models.IntegerField()
     play_count = models.IntegerField()
     playlist = models.ManyToManyField('Track', through='PlaylistMembership')
 

@@ -19,7 +19,7 @@ from mixlist.views import MixView, ProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mix/<int:pk>', MixView.as_view(), name='mix-detail'),
+    path('mix/<slug:slug>', MixView.as_view(), name='mix-detail'),
     path('profile/<int:pk>', ProfileView.as_view(), name='profile'),
 ]
 
