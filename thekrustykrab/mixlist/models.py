@@ -38,7 +38,8 @@ class Mix(models.Model):
     '''
     audio_file = models.FileField() # TODO: Pass in a storage param
     title = models.CharField(max_length=80)
-    artist = models.CharField(max_length=80, null=True)
+    artist = models.CharField(max_length=80, blank=True, null=True)
+    image = models.FileField(blank=True, null=True)
     slug = models.SlugField() # title_of_song_with_underscores_as_spaces
     uploader = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="mixes")
     length = models.DurationField()
