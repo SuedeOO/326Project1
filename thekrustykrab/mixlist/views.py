@@ -15,6 +15,7 @@ class MixView(generic.DetailView):
             playlist.append({
                 'id': member.track.id,
                 'title': member.track.title,
+                'extra_info': member.track.extra_info or '',
                 'artist': member.track.artist,
                 'time': member.time.total_seconds(),
                 'time_str': str(member.time),
