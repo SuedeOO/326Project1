@@ -36,6 +36,12 @@ class ProfileView(generic.DetailView):
 	model = Profile
 	template_name = 'profile_template.html'
 
+	def get_context_data(self, **kwargs):
+		context = super(ProfileView, self).get_context_data(**kwargs)
+		mixes = Mix.objects.all()
+		context['mixs'] = mixes
+		return context
+
 class MainPageView(generic.TemplateView):
     #model = 
     template_name = 'main_page.html'
