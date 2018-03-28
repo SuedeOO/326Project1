@@ -1,7 +1,6 @@
 let file = document.getElementById("audioFile");
+let progressBar = document.getElementById("progressBar");
 let trackTimestamps = document.getElementsByClassName('track-time');
-let reversePlaylist = playlist.slice().reverse(); // useful for current track
-var currentSong = null;
 
 for (var i = 0; i < trackTimestamps.length; i++) {
     trackTimestamps[i].onclick = (aTag) => {
@@ -25,8 +24,8 @@ file.addEventListener("timeupdate", (timeUpdate) => {
     let timestamp = timeUpdate.target.currentTime;
     updateTime(timestamp);
     updateProgressBar(timestamp);
-    updateNowPlaying(timestamp);
 });
+
 
 let updateTime = (timestamp) => {
     var seconds = Math.floor(timestamp);
@@ -39,51 +38,6 @@ let updateTime = (timestamp) => {
 }
 
 let updateProgressBar = (timestamp) => {
-    let progressBar = document.getElementById("progressBar");
     let pct = 100 * timestamp / file.duration;
     progressBar.style.width = pct + "%";
-}
-
-let linkToButtonMapper = (link) => {
-    let elem = document.createElement('a');
-    elem.href = link.url;
-    elem.target = "_blank";
-    elem.className = "btn btn-sm mx-1 ";
-    switch (link.provider) {
-        case "SOUNDCLOUD":
-            elem.className += "btn-soundcloud";
-            elem.innerHTML = "SoundCloud";
-            break;
-        case "SPOTIFY":
-            elem.className += "btn-spotify";
-            elem.innerHTML = "Spotify";
-            break;
-        case "APPLEMUSIC":
-            elem.className += "btn-apple-music";
-            elem.innerHTML = "Apple Music";
-            break;
-        case "YOUTUBE":
-            elem.className += "btn-youtube";
-            elem.innerHTML = "YouTube";
-            break;
-        default:
-            break;
-    }
-    return elem;
-}
-
-let updateNowPlaying = (timestamp) => {
-    let newSong = reversePlaylist.find((track) => timestamp >= track.time);
-    if (newSong != currentSong) {
-        if (currentSong != null) {
-            document.querySelector("[data-id='" + currentSong.id + "']").classList.remove('border-success', 'text-success', 'box-shadow');
-        }
-        currentSong = newSong;
-        document.getElementById('now-playing-title').innerHTML = currentSong.title;
-        document.getElementById('now-playing-artist').innerHTML = currentSong.artist;
-        let linksDiv = document.getElementById('now-playing-links');
-        linksDiv.innerHTML = '';
-        currentSong.links.map(linkToButtonMapper).forEach((e) => linksDiv.appendChild(e));
-        document.querySelector("[data-id='" + currentSong.id + "']").classList.add('border-success', 'text-success', 'box-shadow');
-    }
 }
