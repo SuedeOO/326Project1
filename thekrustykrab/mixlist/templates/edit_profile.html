@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+<!-- title -->
+{% block title%}<title>Edit Profile</title>{% endblock %}
+
+{% load static %}
+
+<!-- css -->
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/edit_profile.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="container">
+            <div class="row">
+                <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar fixed-left">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Account Overview <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Edit Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My Lists</a>
+                        </li>
+                    </ul>
+                 </nav>  
+             </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <h1 class="jumbotron-heading" id="edit-profile">Edit Profile</h1>
+                    <div class="edit-section">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Name:</label>
+                            <div class="col-sm-10">
+                                <input type="" class="form-control" id="name" placeholder={{profile.user.username}}>
+                            </div>
+                         </div>  
+
+                        <div class="form-group row">                    
+                            <label class="col-sm-2 col-form-label">About Me:</label>
+                            <div class="col-sm-10">
+                                <input type="" class="form-control" id="about-me" placeholder= {{profile.about_me}}>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">                    
+                            <label class="col-sm-2 col-form-label">Location</label>
+                            <div class="col-sm-10">
+                                <input type="" class="form-control" id="location" placeholder={{profile.location}}>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>  
+            </div>  
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <a class="btn btn-outline-success my-2 my-sm-0 text-muted">Submit</a>
+                </div>
+             </div>
+        </div>  
+{% endblock %}
