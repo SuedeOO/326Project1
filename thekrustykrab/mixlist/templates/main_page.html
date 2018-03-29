@@ -1,53 +1,9 @@
+{% extends "base_generic.html" %}
+
 {% load static %}
-<html>
-<head>
-    {% block title %}<title>DJ Website</title>{% endblock %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="getbootstrap.com/favicon.ico">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-    {% block css %}<link href="{% static 'mixlist/homepage.css' %}" rel="stylesheet">{% endblock %}
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-</head>
-
-<body>
-    <!-- Navbar -->
-    {% block navbar %}
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Mixlist</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Charts</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">My Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Upload</a>
-        </li>
-
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-</div>
-</nav>
-
+   
+{% block content %}
 <main role="main">
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -60,50 +16,43 @@
 </div>
 
 <div class="container">
+    {% for mix in mixes %}
+    <p>{{mix}}</p>
+    {% endfor %}
     <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Youtube_exmaple</h2>
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-    </div>
-    <div class="col-md-4">
-        <h2>Vimeo_example</h2>
-        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/137857207" allowfullscreen></iframe>
-
-    </div>
-    <div class="col-md-4">
-        <h2>Youtube_example</h2>
-        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/137857207" allowfullscreen></iframe>
-
+    <div class="card-deck">
+        {% for mix in mixes %}
+      <div class="card">
+        {% if mix.image %}
+          <img class="card-img" src="{{mix.image.url}}">
+          {% else %}
+          <img class="card-img" src="http://via.placeholder.com/500x500">
+          {% endif %}
+        
+        <div class="card-body">
+          <h4 class="card-title">{{mix.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+          <div class="d-flex justify-content-between mb-2 text-muted">
+            <small>
+                <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+            </small>
+            <small>
+                <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+            </small>
+            <small>
+                <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+            </small>
+        </div>
+        <p>{{mix.description}}</p>
     </div>
 </div>
+{% endfor %}
+</div>
 
+</div>
 <hr>
 
 </div> <!-- /container -->
 
 </main>
-
-<footer class="container">
-  <p>&copy; Company 2017-2018</p>
-</footer>
-
-    <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-        <script src="getbootstrap.com/assets/js/vendor/popper.min.js"></script>
-        <script src="getbootstrap.com/dist/js/bootstrap.min.js"></script>
-
-        {% endblock %}
-
-        {% block content %}
-        {% endblock %}
-
-        
-    </body>
-
-    {% block javascript %}{% endblock %}
-
-    </html>
+{% endblock %}
