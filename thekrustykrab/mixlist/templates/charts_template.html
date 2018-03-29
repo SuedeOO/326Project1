@@ -142,7 +142,7 @@
 {% for Mix in object_list %}		
 			<tr>
 			<td>{{forloop.counter}}</td>
-			<td>{{ Mix.title }} </td>
+			<td><a href="/mix/{{Mix.slug}}">{{ Mix.title }}</a></td>
 			<td>{{ Mix.artist }}</td>
 			<td>{{ Mix.length }}</td>
 			<td>{{ Mix.like_count }}</td>
