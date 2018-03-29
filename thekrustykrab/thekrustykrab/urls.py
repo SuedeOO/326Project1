@@ -23,7 +23,7 @@ urlpatterns = [
     path('profile/<int:pk>', ProfileView.as_view(), name='profile'),
 	path('upload', UploadMixView.as_view(), name='upload-mix'),
     path('edit/<slug:slug>', EditMixView.as_view(), name='edit-mix'),
-    path('mainPage',MainPageView.as_view(), name = 'main-page'),
+    path('', MainPageView.as_view(), name = 'main-page'),
     path('charts', ChartsView.as_view(), name = 'view-charts')
 ]
 
@@ -32,12 +32,6 @@ from django.urls import include
 
 urlpatterns += [
     path('mixlist/', include('mixlist.urls')),
-]
-
-#Add URL maps to redirect the base URL to our application
-from django.views.generic import RedirectView
-urlpatterns += [
-    path('', RedirectView.as_view(url='/mixlist/')),
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
