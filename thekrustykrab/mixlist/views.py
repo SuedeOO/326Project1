@@ -57,3 +57,7 @@ class ChartsView(generic.ListView):
     model = Mix
     template_name = 'charts_template.html'
     queryset = Mix.objects.order_by('-play_count')
+
+class EditProfileView(generic.DetailView):
+    model = Profile
+    template_name = 'edit_profile.html'
