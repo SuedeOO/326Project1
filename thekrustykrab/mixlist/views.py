@@ -45,3 +45,8 @@ class ProfileView(generic.DetailView):
 class MainPageView(generic.TemplateView):
     #model = 
     template_name = 'main_page.html'
+	
+class ChartsView(generic.ListView):
+    model = Mix
+    template_name = 'charts_template.html'
+    queryset = Mix.objects.order_by('-play_count')
