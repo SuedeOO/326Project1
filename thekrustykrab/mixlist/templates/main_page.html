@@ -61,21 +61,65 @@
 
 <div class="container">
     <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Youtube_exmaple</h2>
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+    <div class="card-deck">
+      <div class="card">
+        <img class="card-img-top" src="https://i.imgur.com/LfZ2jlH.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{mix.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+          <div class="d-flex justify-content-between mb-2 text-muted">
+            <small>
+                <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+            </small>
+            <small>
+                <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+            </small>
+            <small>
+                <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+            </small>
+        </div>
+        <p>{{mix.description}}</p>
     </div>
-    <div class="col-md-4">
-        <h2>Vimeo_example</h2>
-        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/137857207" allowfullscreen></iframe>
-
+</div>
+<div class="card">
+   <img class="card-img-top" src="https://i.imgur.com/LfZ2jlH.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{mix.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+          <div class="d-flex justify-content-between mb-2 text-muted">
+            <small>
+                <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+            </small>
+            <small>
+                <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+            </small>
+            <small>
+                <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+            </small>
+        </div>
+        <p>{{mix.description}}</p>
     </div>
-    <div class="col-md-4">
-        <h2>Youtube_example</h2>
-        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/137857207" allowfullscreen></iframe>
-
+</div>
+<div class="card">
+    <img class="card-img-top" src="https://i.imgur.com/LfZ2jlH.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{mix.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+          <div class="d-flex justify-content-between mb-2 text-muted">
+            <small>
+                <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+            </small>
+            <small>
+                <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+            </small>
+            <small>
+                <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+            </small>
+        </div>
+        <p>{{mix.description}}</p>
     </div>
+</div>
+</div>
 </div>
 
 <hr>

@@ -1,88 +1,23 @@
 {% extends "base_generic.html" %}
 
-<!-- title -->
 {% block title%}<title>Profile</title>{% endblock %}
-
-{% load static %}
-
-<!-- css -->
-{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/profile.css' %}" />{% endblock %}
 
 {% block content %}
 <div class="container">
- 	<div class="row">
-		<div class="col-lg-12 mt-2">
-			<div class="jumbotron">
-				{% if profile.profile_image %}
-                <img src="{{ profile.profile_image.url }}" height="250" width="250">
-                {% else %}
-                <img src="http://via.placeholder.com/250x250">
-                {% endif %}
-				<h1 id="username">{{ profile.user.username }}</h1>
-			</div>
-
-			<div class="row">
-		    	<div class="col-lg-4">
-					<div class="bg-light p-2 rounded">
-						<table>
-							<tr>
-								<td><b>Date Joined:</b></td>
-								<td>{{ profile.user.date_joined }}</td>
-							</tr>
-							<tr>
-								<td><b>Location:</b></td>
-								<td>{{ profile.location }}
-							</tr>
-							<tr>
-								<td><b>About me:</b></td>
-							</tr>
-							<tr>
-								<td colspan=2 style="word-wrap: break-word">{{ profile.about_me }}</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				
-		    	<div class="col-lg-4">
-					<div class="bg-light p-2 rounded">
-						<h3>{{ profile.user.username }}'s uploaded mixes</h3>
-						<div class="mixes">
-							{% for mix in mixs %}
-							<h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
-							{% endfor %}
-						</div>
-					</div>
-
-		    	</div>
-		    	<div class="col-lg-4">
-					<div class="bg-light p-2 rounded">
-						<h3>{{ profile.user.username }}'s Followees</h3>
-						<div class="follows">	
-							{% for profile in profile.following.all %}
-							<h6><a href="{{profile.id}}">{{ profile.user.username }}</a></h6>
-							{% endfor %}
-						</div>
-					</div>
-					<p></p>
-					<div class="bg-light p-2 rounded">
-						<h3>{{ profile.user.username }}'s Favorite Mixes</h3>
-						<div class="favorites">
-							{% for mix in profile.favorites.all %}
-							<h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
-							{% endfor %}
-						</div>
-					</div>
-		    	</div>
-			</div>
-		</div>
-		<div class="col-lg-0"></div>
-		<!--
-		Unused fields:
-		<h1>First Name: {{ profile.user.first_name }}</h1>
-	    <h1>Last Name: {{ profile.user.last_name }}</h1>
-	    <h1>Full Name: {{ profile.user.get_full_name }}</h1>
-	    <h1>Email: {{ profile.user.email }}</h1>
-		-->
-  	</div>
+  <div class="row">
+    <h1>Username: {{ profile.user.username}}</h1>
+    <h1>First Name: {{ profile.user.first_name }}</h1>
+    <h1>Last Name: {{ profile.user.last_name }}</h1>
+    <h1>Full Name: {{ profile.user.get_full_name }}</h1>
+    <h1>Date Joined: {{ profile.user.date_joined }}</h1>
+    <h1>Location: {{ profile.location }}</h1>
+    <h1>About me: {{ profile.about_me }}</h1>
+    <h1>Email: {{ profile.user.email }}</h1>
+    <ul>
+    	{% for profile in profile.following.all %}
+    	<li>{{ profile.user.username }}</li>
+    	{% endfor %}
+    </ul>
+  </div>
 </div>
 {% endblock %}

@@ -30,13 +30,23 @@
 	</div>	
 {% endblock %}
 
-{% block add_script %}
-<script>
-$(document).ready(function() {
-	addEmptyTag();
-});
-</script>
-{% endblock %}
-
 {% block tags %}
+	<div class="tag">
+		<label class="col-sm-2 col-form-label">Edit Tag:</label>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-start" placeholder="Start Time">
+		</div>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-link" placeholder="Link">						
+		</div>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-title" placeholder="Title">
+		</div>
+		<div class="col-sm-12">
+			<input type="" class="form-control tag-author" placeholder="Author">
+		</div>
+		<div class="col-sm-1">
+			<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
+		</div>	
+	</div>
 {% endblock %}

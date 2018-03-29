@@ -33,7 +33,7 @@
 				<div class="form-group row">					
 					<label class="col-sm-2 col-form-label">Author:</label>
 					<div class="col-sm-10">
-						<input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)" value="{{mix.artist}}">
+						<input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)">
 					</div>
 				</div>
 			</div>
@@ -60,26 +60,28 @@
 
 {% block javascript %}
 	{% load static %}
-	<script src="{% static 'mixlist/jquery-3.3.1.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="{% static 'mixlist/upload.js' %}"></script>	
 	<script id="tag-new" type="text/html">		
 		<div class="tag">
 			<label class="col-sm-2 col-form-label">Edit Tag:</label>
-			<div class="col-sm-12 row">
-				<input type="" class="col-sm-2 form-control tag-start" placeholder="Start Time" value="¶startTime">
-				<input type="" class="col-sm-5 form-control tag-title" placeholder="Title" value="¶title">
-				<input type="" class="col-sm-5 form-control tag-author" placeholder="Artist" value="¶artist">
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-start" placeholder="Start Time">
 			</div>
-			<div class="col-sm-12 row">
-				<input type="" class="form-control tag-link" placeholder="Links" value="¶links">
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-link" placeholder="Link">
 			</div>
-			<div class="col-sm-12 row">
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-title" placeholder="Title">
+			</div>
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-author" placeholder="Author">
+			</div>
+			<div class="col-sm-12">
 				<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
 				<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-up">Move Up</a>
 				<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-down">Move Down</a>
-			</div>			
+			</div>
 		</div>		
 	</script>
-	{% block add_script %}
-	{% endblock %}
 {% endblock %}

@@ -4,14 +4,25 @@
 
 {% block heading %}Edit Mix{% endblock %}
 
-
-
-{% block add_script %}
-<script>
-$(document).ready(function() {
+{% block tags %}
 	{% for member in mix.playlistmembership_set.all %}
-		addTag("{{member.time}}","{{member.track.title}}","{{member.track.artist}}","{{member.track.get_links}}");
+		<div class="tag">
+			<label class="col-sm-2 col-form-label">Edit Tag:</label>
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-start" placeholder="Start Time" value="{{member.time}}">
+			</div>
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-link" placeholder="Link" value="{{member.track.get_links}}">						
+			</div>
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-title" placeholder="Title" value="{{member.track.title}}">
+			</div>
+			<div class="col-sm-12">
+				<input type="" class="form-control tag-author" placeholder="Author" value="{{member.track.artist}}">
+			</div>
+			<div class="col-sm-1">
+				<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
+			</div>	
+		</div>
 	{% endfor %}
-});
-</script>
 {% endblock %}

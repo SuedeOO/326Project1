@@ -33,22 +33,3 @@ body {
     width: 40px;
 }
 
-.btn-soundcloud {
-    background-color: #f50;
-    color: white!important;
-}
-
-.btn-spotify {
-    background-color: #1db954;
-    color: white!important;
-}
-
-.btn-apple-music {
-    background-color: #FF365D;
-    color: white!important;
-}
-
-.btn-youtube {
-    background-color: red;
-    color: white!important;
-}
