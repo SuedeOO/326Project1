@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Mix, Profile
 from django.forms.models import model_to_dict
+from django.http import HttpRequest
 
 # Create your views here.
 class MixView(generic.DetailView):
@@ -38,7 +39,7 @@ class ProfileView(generic.DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(ProfileView, self).get_context_data(**kwargs)
-		context['mixs'] = Mix.objects.all()
+		context['mixs'] = Mix.objects.filter(uploader__user=self.kwargs['pk'])
 		return context
 
 class MainPageView(generic.TemplateView):
