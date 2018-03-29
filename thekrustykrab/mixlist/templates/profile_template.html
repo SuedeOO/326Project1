@@ -57,11 +57,21 @@
 		    	</div>
 		    	<div class="col-lg-4">
 					<div class="bg-light p-2 rounded">
-						<ul>
+						<h3>{{ profile.user.username }}'s Followees</h3>
+						<div class="follows">	
 							{% for profile in profile.following.all %}
-							<li>{{ profile.user.username }}</li>
+							<h6><a href="{{profile.id}}">{{ profile.user.username }}</a></h6>
 							{% endfor %}
-						</ul>
+						</div>
+					</div>
+					<p></p>
+					<div class="bg-light p-2 rounded">
+						<h3>{{ profile.user.username }}'s Favorite Mixes</h3>
+						<div class="favorites">
+							{% for mix in profile.favorites.all %}
+							<h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
+							{% endfor %}
+						</div>
 					</div>
 		    	</div>
 			</div>
