@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <!-- card contents -->
                                 <h4 class="card-title">{{mix.title}}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+                                <a class="card-subtitle mb-2 text-muted" href="{{mix.uploader.get_absolute_url}}"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</a>
                                 <div class="d-flex justify-content-between mb-2 text-muted">
                                     <small>
                                         <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}

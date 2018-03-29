@@ -22,6 +22,9 @@ class Profile(models.Model):
     def email(self):
         return self.user.email
 
+    def get_absolute_url(self):
+        return reverse('profile', args=[str(self.id)])
+
 #code to auto add profiles for users
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
