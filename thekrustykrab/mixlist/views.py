@@ -41,10 +41,17 @@ class ProfileView(generic.DetailView):
 		context = super(ProfileView, self).get_context_data(**kwargs)
 		context['mixs'] = Mix.objects.filter(uploader__user=self.kwargs['pk'])
 		return context
-
+	
 class MainPageView(generic.TemplateView):
-    #model = 
-    template_name = 'main_page.html'
+    #model = Mix
+    template_name = 'main_page.html' #fill this
+    
+    def get_context_data(self, **kwargs):
+     
+     model = Mix   
+     context = super(MainPageView, self).get_context_data(**kwargs)
+     context['mixes'] = Mix.objects.all()[:3]
+     return context    
 	
 class ChartsView(generic.ListView):
     model = Mix
