@@ -9,26 +9,25 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">Welcome To DJ-Max</h1>
+      <h1 class="display-3">Welcome To Mixlist</h1>
       <p>welcome to DJ-max,you share your own DJ to the world, and listen to all the DJ from the world</p>
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Do something &raquo;</a></p>
   </div>
 </div>
 
 <div class="container">
-    {% for mix in mixes %}
-    <p>{{mix}}</p>
-    {% endfor %}
+
     <!-- Example row of columns -->
     <div class="card-deck">
         {% for mix in mixes %}
       <div class="card">
+        <a href ="{{mix.get_absolute_url}}">
         {% if mix.image %}
           <img class="card-img" src="{{mix.image.url}}">
           {% else %}
           <img class="card-img" src="http://via.placeholder.com/500x500">
           {% endif %}
-        
+        </a>
         <div class="card-body">
           <h4 class="card-title">{{mix.title}}</h4>
           <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
