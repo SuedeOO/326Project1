@@ -1,53 +1,13 @@
+{% extends "base_generic.html" %}
 {% load static %}
-<html>
-<head>
-    {% block title %}<title>MixList</title>{% endblock %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="getbootstrap.com/favicon.ico">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-
+    {% block title %}<title>Charts</title>{% endblock %}
 
 
     {% block css %}<link href="{% static 'mixlist/charts.css' %}" rel="stylesheet">{% endblock %}
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-</head>
 
-<body>
-    <!-- Navbar -->
-    {% block navbar %}
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Mixlist</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="#">Charts<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">My Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Upload</a>
-        </li>
-
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-</div>
-</nav>
-{% endblock %}
+{% block content %}
 <!--Dropdown menus-->
 	<table id="filters" cellpadding="20">
 		<tr>
@@ -158,8 +118,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   
-    </body>
+    
 
     {% block javascript %}{% endblock %}
-
-    </html>
+	
+{% endblock %}
