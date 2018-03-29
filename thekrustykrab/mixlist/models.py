@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #profile_image = models.ImageField() #TODO: param
+    profile_image = models.FileField(blank=True, null=True)
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
     #page of liked profiles

@@ -38,8 +38,7 @@ class ProfileView(generic.DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(ProfileView, self).get_context_data(**kwargs)
-		mixes = Mix.objects.all()
-		context['mixs'] = mixes
+		context['mixs'] = Mix.objects.all()
 		return context
 
 class MainPageView(generic.TemplateView):
