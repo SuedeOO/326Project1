@@ -9,10 +9,10 @@
 
 <!-- javascript for this page -->
 {% block javascript %}
-<script src="{% static 'mixlist/player.js' %}"></script>
 <script type="text/javascript">
     let playlist = {{playlist|safe}};
 </script>
+<script src="{% static 'mixlist/player.js' %}"></script>
 {% endblock %}
 
 
@@ -22,7 +22,7 @@
             <!-- body content -->
             <div class="col-xl-8 col-lg-8">
                 <!-- mix card -->
-                <div class="card box-shadow mb-3">
+                <div class="card box-shadow my-3">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card-body">
@@ -45,7 +45,11 @@
                         </div>
                         <!-- card image -->
                         <div class="col-md-4">
-                            <img class="card-img" src="https://i.imgur.com/LfZ2jlH.jpg">
+                            {% if mix.image %}
+                            <img class="card-img" src="{{mix.image.url}}">
+                            {% else %}
+                            <img class="card-img" src="http://via.placeholder.com/500x500">
+                            {% endif %}
                         </div>
                     </div>
 
@@ -78,12 +82,10 @@
                 <div class="card box-shadow">
                     <h6 class="card-header">Now Playing</h6>
                     <div class="card-body">
-                        <h5 class="card-title">Wild For The Night</h5>
-                        <h6 class="card-subtitle font-weight-light mb-2">A$AP Rocky, Skrillex, Birdy Nam Nam</h6>
-                        <button type="button" class="btn btn-success btn-sm">Spotify</button>
-                        <button type="button" class="btn btn-warning btn-sm">SoundCloud</button>
-                        <button type="button" class="btn btn-danger btn-sm">YouTube</button>
-
+                        <h5 class="card-title" id="now-playing-title"></h5>
+                        <h6 class="card-subtitle font-weight-light mb-2"id="now-playing-artist"></h6>
+                        <div id="now-playing-links">
+                        </div>
                     </div>
                 </div>
 
@@ -91,20 +93,21 @@
 
             <!-- sidebar -->
             <div class="col-xl-4 col-lg-4 pre-scrollable d-none d-md-block sidebar">
-                {% for member in mix.playlistmembership_set.all %}
+                <h6 class="mt-2 text-muted">TRACKLIST</h6>
+                {% for track in playlist %}
                 <!-- sidebar card for loop -->
-                <div class="card">
-                    <div class="track-card card-body">
+                <div data-id="{{track.id}}" class="card">
+                    <div class="track-card-body card-body">
                         <div class="d-flex w-100 justify-content-start">
                             <div class="py-2 pr-3 text-dark">
                                 <i class="fas fa-music fa-lg"></i>
                             </div>
                             <div>
-                                <h6 class="mb-0">{{member.track.title}}</h6>
-                                <p class="mb-1 font-weight-light">{{member.track.artist}}</p>            
+                                <h6 class="mb-0">{{track.title}} {{track.extra_info}}</h6>
+                                <p class="mb-1 font-weight-light">{{track.artist}}</p>            
                                 <div class="btn-group btn-group-sm" role="group">
                                 <!-- icon button links -->
-                                {% for link in member.track.links.all %}
+                                {% for link in track.links %}
                                     {% if link.provider == "SPOTIFY" %}
                                         <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-spotify"></i></a>
                                     {% endif %}
@@ -115,7 +118,7 @@
                                         <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-soundcloud"></i></a>
                                     {% endif %}
                                     {% if link.provider == "YOUTUBE" %}
-                                        <a class="btn btn-outline-dark" href="{{link.url}}" target="_blank"><i class="fab fa-youtube"></i></a>
+                                        <a class="btn btn-outline-secondary" href="{{link.url}}" target="_blank"><i class="fab fa-youtube"></i></a>
                                     {% endif %}
                                 {% endfor %}
                                 </div>    
@@ -123,7 +126,7 @@
 
                             <!-- time tag -->
                             <div class="ml-auto pl-2">
-                                <a class="track-time badge badge-success" data-time="{{member.time.total_seconds}}" href="#">{{member.time}}</a>
+                                <a class="track-time badge badge-success" data-time="{{track.time}}" href="javascript:;">{{track.time_str}}</a>
                             </div>
                             
                         </div>

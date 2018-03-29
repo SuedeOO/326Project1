@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #profile_image = models.ImageField() #TODO: param
+    profile_image = models.FileField(blank=True, null=True)
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
     #page of liked profiles
@@ -38,7 +39,8 @@ class Mix(models.Model):
     '''
     audio_file = models.FileField() # TODO: Pass in a storage param
     title = models.CharField(max_length=80)
-    artist = models.CharField(max_length=80, null=True)
+    artist = models.CharField(max_length=80, blank=True, null=True)
+    image = models.FileField(blank=True, null=True)
     slug = models.SlugField() # title_of_song_with_underscores_as_spaces
     uploader = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="mixes")
     length = models.DurationField()
@@ -51,6 +53,8 @@ class Mix(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('mix-detail', args=[str(self.slug)])
         
 class Track(models.Model):
     """

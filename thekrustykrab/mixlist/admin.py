@@ -30,7 +30,7 @@ class ProfileAdmin(admin.ModelAdmin):
     #separates different pieces for admin page
     fieldsets = (
     	(None, {
-    		'fields': ('user', 'location', 'about_me')
+    		'fields': ('user', 'profile_image', 'location', 'about_me')
     	}),
     	('Profile Lists', {
     		'fields': [('following', 'favorites')]

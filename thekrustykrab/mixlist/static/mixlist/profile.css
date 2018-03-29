@@ -1,0 +1,8 @@
+div {
+    /* border-style: solid; */
+    text-align: center;
+}
+
+div.mixes {
+	overflow: auto;
+}
