@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 <html>
 <head>
@@ -162,4 +163,170 @@
 
     {% block javascript %}{% endblock %}
 
+=======
+{% load static %}
+<html>
+<head>
+    {% block title %}<title>MixList</title>{% endblock %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="getbootstrap.com/favicon.ico">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    {% block css %}<link href="{% static 'mixlist/charts.css' %}" rel="stylesheet">{% endblock %}
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    {% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">Mixlist</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Charts<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">My Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Upload</a>
+        </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+</nav>
+{% endblock %}
+<!--Dropdown menus-->
+	<table id="filters" cellpadding="20">
+		<tr>
+			<td>
+				<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Top 5
+				<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Top 10</a></li>
+						<li><a href="#">Top 50</a></li>
+						<li><a href="#">Top 100</a></li>
+					</ul>	
+				</div>
+			</td>
+			<td>
+				<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Most Played
+				<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Most Liked</a></li>
+					</ul>	
+				</div>
+			</td>
+			<td>
+				<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">USA
+				<span class="caret"></span></button>
+					<ul class="dropdown-menu scrollable-menu">
+						<li><a href="#">All countries</a></li>
+						<li><a href="#">Afghanistan</a></li>
+						<li><a href="#">Albania</a></li>
+						<li><a href="#">Algeria</a></li>
+						<li><a href="#">Andorra</a></li>
+						<li><a href="#">Angola</a></li>
+						<li><a href="#">Antigua</a></li>
+						<li><a href="#">Argentina</a></li>
+						<li><a href="#">Armenia</a></li>
+						<li><a href="#">Aruba</a></li>
+						<li><a href="#">Australia</a></li>
+						<li><a href="#">Austria</a></li>
+						<li><a href="#">Azerbaijan</a></li>
+						<li><a href="#">Bangladesh</a></li>
+						<li><a href="#">Barbados</a></li>
+					</ul>	
+				</div>
+			</td>
+			<td>
+				<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">All genres
+				<span class="caret"></span></button>
+					<ul class="dropdown-menu scrollable-menu">
+						<li><a href="#">Ambient</a></li>
+						<li><a href="#">Drum 'n' Bass</a></li>
+						<li><a href="#">Electronic</a></li>
+						<li><a href="#">Grime</a></li>
+						<li><a href="#">Hip Hop</a></li>
+						<li><a href="#">House</a></li>
+						<li><a href="#">Reggaeton</a></li>
+						<li><a href="#">RnB</a></li>
+						<li><a href="#">Trance</a></li>
+					</ul>	
+				</div>
+			</td>
+			<td>
+				<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">This week
+				<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#">This month</a></li>
+						<li><a href="#">This year</a></li>
+						<li><a href="#">All time</a></li>
+					</ul>	
+				</div>
+			</td>
+		</tr>
+	</table>
+
+<!--Charts Table-->	
+
+    <table class="table table-striped" id="chart"> 
+		<thead> 
+			<tr> 
+				<th>#</th>
+				<th>Title</th> 
+				<th>Artist</th>
+				<th>Length</th>
+				<th>Likes</th>
+				<th>Plays</th>
+			</tr> 
+		</thead>
+		<tbody>
+{% for Mix in object_list %}		
+			<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{ Mix.title }} </td>
+			<td>{{ Mix.artist }}</td>
+			<td>{{ Mix.length }}</td>
+			<td>{{ Mix.like_count }}</td>
+			<td>{{ Mix.play_count }}</td>
+			</tr>
+{% endfor %}			
+		</tbody> 
+	</table>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    </body>
+
+    {% block javascript %}{% endblock %}
+
+>>>>>>> 86201440e658066de7d35383079a07281f844488
     </html>
