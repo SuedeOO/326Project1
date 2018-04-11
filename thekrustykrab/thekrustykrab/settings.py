@@ -57,7 +57,7 @@ ROOT_URLCONF = 'thekrustykrab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +134,5 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_LOCATION = 'mixlist'
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 DEFAULT_FILE_STORAGE = 'thekrustykrab.storage_backends.MediaStorage'  # <-- here is where we reference it
+
+LOGIN_REDIRECT_URL = '/'

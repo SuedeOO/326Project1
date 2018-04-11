@@ -25,6 +25,8 @@ class MixView(generic.DetailView):
         context['playlist'] = playlist
         return context
 
+class LogInView(generic.TemplateView):
+    template_name = 'login_signup.html'
 
 class EditMixView(generic.DetailView):
     model = Mix

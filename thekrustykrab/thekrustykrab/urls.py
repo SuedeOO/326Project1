@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mixlist.views import MixView, ProfileView, UploadMixView, EditMixView, MainPageView, ChartsView, EditProfileView
+from mixlist.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +25,7 @@ urlpatterns = [
     path('edit/<slug:slug>', EditMixView.as_view(), name='edit-mix'),
     path('', MainPageView.as_view(), name = 'main-page'),
     path('charts', ChartsView.as_view(), name = 'view-charts'),
-    path('editprofile', EditProfileView.as_view(), name = 'edit-profile')
+    path('editprofile', EditProfileView.as_view(), name = 'edit-profile'),
 ]
 
 # Use include() to add paths from the catalog application 
@@ -43,3 +43,8 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG is True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
