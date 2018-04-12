@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+<!-- title -->
+{% block title%}<title>Sign Up</title>{% endblock %}
+
+{% load static %}
+
+<!-- css -->
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/reg.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-4 col-centered">
+			<h1 align="center">Sign Up</h1>
+		</div>
+	</div>
+    <div class="row">
+    	<div class="col-lg-7 col-centered">
+  			<form method="post">
+    			{% csrf_token %}
+    			{{ form.as_p }}
+    			<button type="submit">Sign up</button>
+  			</form>
+  		</div>
+  	</div>
+</div>
+{% endblock %}

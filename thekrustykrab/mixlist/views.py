@@ -3,6 +3,13 @@ from django.views import generic
 from .models import Mix, Profile
 from django.forms.models import model_to_dict
 from django.http import HttpRequest
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
 
 # Create your views here.
 class MixView(generic.DetailView):
