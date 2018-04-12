@@ -19,6 +19,18 @@
                 <img src="http://via.placeholder.com/250x250">
                 {% endif %}
 				<h1 id="username">{{ profile.user.username }}</h1>
+				<!-- 
+				If the logged in user is following, displays button to unfollow
+				"						" not following, displays button to follow
+				If user is not logged in, displays nothing
+				-->
+				{% if user.is_authenticated %}
+					{% if profile in user.profile.following.all %}
+						<h1 class="btn btn-secondary">Unfollow</h1>
+					{% else %}
+						<h1 class="btn btn-primary">Follow</h1>
+					{% endif %}
+				{% endif %}
 			</div>
 
 			<div class="row">
