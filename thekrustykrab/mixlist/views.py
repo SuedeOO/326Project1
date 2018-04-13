@@ -49,6 +49,10 @@ class ProfileView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
         context['follows'] = Follows.objects.filter(owner__user=self.kwargs['pk'])
+        bfollows = []
+        for rel in Follows.objects.filter(follows__user=self.kwargs['pk']):
+            bfollows.append(rel.owner)
+        context['bfollows'] = bfollows
         context['mixs'] = Mix.objects.filter(uploader__user=self.kwargs['pk'])
         return context
 	

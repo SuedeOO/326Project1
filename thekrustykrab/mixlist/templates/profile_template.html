@@ -8,6 +8,8 @@
 <!-- css -->
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/profile.css' %}" />{% endblock %}
 
+{% block javascript %} {% endblock %}
+
 {% block content %}
 <div class="container">
  	<div class="row">
@@ -25,10 +27,10 @@
 				If user is not logged in, displays nothing
 				-->
 				{% if user.is_authenticated %}
-					{% if profile in user.profile.following.all %}
+					{% if user.profile in bfollows %}
 						<h1 class="btn btn-secondary">Unfollow</h1>
 					{% else %}
-						<h1 class="btn btn-primary">Follow</h1>
+						<a href="{% url 'follow' profile.id %}" class="btn btn-primary">Follow</a>
 					{% endif %}
 				{% endif %}
 			</div>
@@ -70,8 +72,10 @@
 					<div class="bg-light p-2 rounded">
 						<h3>{{ profile.user.username }}'s Followees</h3>
 						<div class="follows">	
-							{% for profile in profile.following.all %}
-							<h6><a href="{{profile.id}}">{{ profile.user.username }}</a></h6>
+							{% for f in follows.all %}
+								{% if profile == f.owner %}
+								<h6><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></h6>
+								{% endif %}
 							{% endfor %}
 						</div>
 					</div>
