@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Mix, Track, ExternalLink, PlaylistMembership, Profile
+from .models import *
 
 # Register your models here.
 admin.site.register(ExternalLink)
@@ -16,6 +16,10 @@ class ExternalLinkInline(admin.TabularInline):
 class TrackAdmin(admin.ModelAdmin):
 	inlines = (ExternalLinkInline,)
 	extra = 1
+
+@admin.register(Follows)
+class FollowsAdmin(admin.ModelAdmin):
+    list_display = ('owner', 'follows')
 
 @admin.register(Mix)
 class MixAdmin(admin.ModelAdmin):

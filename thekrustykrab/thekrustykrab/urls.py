@@ -48,4 +48,5 @@ if settings.DEBUG is True:
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', SignUp.as_view(), name='signup'),
+    path('profile/<profile_id>/follow', follow, name="follow")
 ]

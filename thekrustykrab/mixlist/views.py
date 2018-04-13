@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
-from .models import Mix, Profile
+from .models import Mix, Profile, Follows
 from django.forms.models import model_to_dict
 from django.http import HttpRequest
 from django.contrib.auth.forms import UserCreationForm
@@ -43,13 +43,14 @@ class UploadMixView(generic.TemplateView):
     template_name = 'editor_upload.html'
 
 class ProfileView(generic.DetailView):
-	model = Profile
-	template_name = 'profile_template.html'
+    model = Profile
+    template_name = 'profile_template.html'
 
-	def get_context_data(self, **kwargs):
-		context = super(ProfileView, self).get_context_data(**kwargs)
-		context['mixs'] = Mix.objects.filter(uploader__user=self.kwargs['pk'])
-		return context
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['follows'] = Follows.objects.filter(owner__user=self.kwargs['pk'])
+        context['mixs'] = Mix.objects.filter(uploader__user=self.kwargs['pk'])
+        return context
 	
 class MainPageView(generic.TemplateView):
     #model = Mix
@@ -70,3 +71,10 @@ class ChartsView(generic.ListView):
 class EditProfileView(generic.TemplateView):
     model = Profile
     template_name = 'edit_profile.html'
+
+def follow(request, profile_id):
+    user = request.user
+    profile = Profile.objects.get(id=profile_id)
+    f = Follows(owner=user.profile, follows=profile)
+    f.save()
+    return redirect("/profile/"+profile_id)

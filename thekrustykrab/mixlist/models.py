@@ -9,8 +9,6 @@ class Profile(models.Model):
     profile_image = models.FileField(blank=True, null=True)
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
-    #page of liked profiles
-    following = models.ManyToManyField('self', blank=True)
     #page of mixes
     favorites = models.ManyToManyField('Mix', blank=True)
     def __str__(self):
@@ -112,8 +110,7 @@ class PlaylistMembership(models.Model):
 
     def __str__(self):
         return str(self.mix.title) + '--' + str(self.track.title) + '@' + str(self.time)
-    
 
-
-
-
+class Follows(models.Model):
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='person_who_follows')
+    follows = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='person_following')
