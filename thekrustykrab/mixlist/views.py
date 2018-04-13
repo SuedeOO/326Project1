@@ -77,8 +77,14 @@ class EditProfileView(generic.TemplateView):
     template_name = 'edit_profile.html'
 
 def follow(request, profile_id):
-    user = request.user
+    user = request.user.profile
     profile = Profile.objects.get(id=profile_id)
-    f = Follows(owner=user.profile, follows=profile)
+    f = Follows(owner=user, follows=profile)
     f.save()
+    return redirect("/profile/"+profile_id)
+
+def unfollow(request, profile_id):
+    user = request.user.profile
+    profile = Profile.objects.get(id=profile_id)
+    Follows.objects.filter(owner=user, follows=profile).delete()
     return redirect("/profile/"+profile_id)

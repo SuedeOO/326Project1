@@ -28,7 +28,7 @@
 				-->
 				{% if user.is_authenticated %}
 					{% if user.profile in bfollows %}
-						<h1 class="btn btn-secondary">Unfollow</h1>
+						<a href="{% url 'unfollow' profile.id %}" class="btn btn-secondary">Unfollow</a>
 					{% else %}
 						<a href="{% url 'follow' profile.id %}" class="btn btn-primary">Follow</a>
 					{% endif %}
