@@ -25,7 +25,7 @@ urlpatterns = [
     path('edit/<slug:slug>', EditMixView.as_view(), name='edit-mix'),
     path('', MainPageView.as_view(), name = 'main-page'),
     path('charts', ChartsView.as_view(), name = 'view-charts'),
-    path('editprofile', EditProfileView.as_view(), name = 'edit-profile'),
+    path('editprofile', edit_profile, name = 'edit-profile'),
 ]
 
 # Use include() to add paths from the catalog application 

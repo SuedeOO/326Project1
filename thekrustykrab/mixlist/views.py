@@ -8,6 +8,11 @@ from django.urls import reverse_lazy
 from django.urls import reverse
 from django.utils.text import slugify
 from datetime import timedelta
+from django.contrib.auth.forms import UserChangeForm 
+from django.contrib.auth.models import User
+from mixlist.forms import (
+    EditProfileForm
+)
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
@@ -89,9 +94,19 @@ class ChartsView(generic.ListView):
     template_name = 'charts_template.html'
     queryset = Mix.objects.order_by('-play_count')
 
-class EditProfileView(generic.TemplateView):
-    model = Profile
-    template_name = 'edit_profile.html'
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance = request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/1')
+    else:
+        form = EditProfileForm(instance = request.user)
+        args = {'form':form}
+        return render(request,'edit_profile.html', args)
+
 
 def follow(request, profile_id):
     user = request.user.profile

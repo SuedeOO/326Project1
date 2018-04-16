@@ -6,6 +6,9 @@ from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # first_name = models.CharField(max_length=100)
+    # last_name = models.CharField(max_length=100)
+    # email = models.EmailField(max_length=100)
     profile_image = models.FileField(blank=True, null=True)
     location = models.CharField(max_length = 25, blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
@@ -67,6 +70,7 @@ class Track(models.Model):
     artist = models.CharField(max_length = 50)
     extra_info = models.CharField(max_length = 100, blank=True, null=True) #remixer, etc.
     reference_count = models.IntegerField() #how mixes reference this track
+
     
     def get_links(self):        
         links = self.links.all()
