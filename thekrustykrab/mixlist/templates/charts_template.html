@@ -1,10 +1,9 @@
 {% extends "base_generic.html" %}
 {% load static %}
 
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/charts.css' %}" >{% endblock %}
+
     {% block title %}<title>Charts</title>{% endblock %}
-
-
-    {% block css %}<link href="{% static 'mixlist/charts.css' %}" rel="stylesheet">{% endblock %}
 
 {% block content %}
 <!--Dropdown menus-->
@@ -90,8 +89,8 @@
 		<thead> 
 			<tr> 
 				<th>#</th>
-				<th>Title</th>
-				<th>Uploader</th>
+				<th></th>
+				<th></th>
 				<th>Artist</th>
 				<th>Length</th>
 				<th>Likes</th>
@@ -102,8 +101,14 @@
 {% for Mix in object_list %}		
 			<tr>
 			<td>{{forloop.counter}}</td>
-			<td><a href="/mix/{{Mix.slug}}">{{ Mix.title }}</a></td>
-			<td><a href="{{Mix.uploader.get_absolute_url}}">{{ Mix.uploader }}</a></td>
+			<td width="5%">
+							{% if Mix.image %}
+                            <img class="mix_img" src="{{Mix.image.url}}">
+                            {% else %}
+                            <img class="mix_img" src="http://via.placeholder.com/500x500">
+                            {% endif %}
+					</td>
+			<td><a id="mix" href="/mix/{{Mix.slug}}">{{ Mix.title }}</a><br /><a id="uploader" href="{{ Mix.uploader.get_absolute_url }}"><i class="fas fa-user mr-1"></i>{{ Mix.uploader }}</a></td>
 			<td>{{ Mix.artist }}</td>
 			<td>{{ Mix.length }}</td>
 			<td>{{ Mix.like_count }}</td>
