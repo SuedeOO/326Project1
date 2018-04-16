@@ -10,8 +10,10 @@
 <script>
 $(document).ready(function() {
 	{% for member in mix.playlistmembership_set.all %}
-		addTag("{{member.time}}","{{member.track.title}}","{{member.track.artist}}","{{member.track.get_links}}");
+		addExistingTag("{{member.time}}","{{member.track.title}}","{{member.track.artist}}","{{member.track.get_links}}");
 	{% endfor %}
+    tags.sort(compareTags);
+    displayTags();
 });
 </script>
 {% endblock %}

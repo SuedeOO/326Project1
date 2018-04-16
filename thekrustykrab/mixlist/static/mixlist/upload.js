@@ -27,6 +27,15 @@ function addTag(){
     }
 }
 
+function addExistingTag(time, title, artist, links){
+    var tag = {};
+    tag.time = HMSToSec(time);
+    tag.title = title;
+    tag.artist = artist;
+    tag.links = links;
+    tags.push(tag);   
+}
+
 function validate(tag){
     var isValid = true;
    
@@ -61,8 +70,6 @@ function displayTags(){
     for(i = 0; i < tags.length; i++) {  
         tag = tags[i];
         newhtml = $("#tag-new").html();
-        //newid = uniqueID();
-        //newhtml = newhtml.replace("¶id", newid);
         newhtml = newhtml.replace("¶id", "tag" + i);        
         newhtml = newhtml.replace("¶startTime", secToHMS(tag.time));
         newhtml = newhtml.replace("¶title", tag.title);
