@@ -11,7 +11,8 @@ from datetime import timedelta
 from django.contrib.auth.forms import UserChangeForm 
 from django.contrib.auth.models import User
 from mixlist.forms import (
-    EditProfileForm
+    EditProfileForm,
+    UserForm
 )
 
 class SignUp(generic.CreateView):
@@ -97,15 +98,16 @@ class ChartsView(generic.ListView):
 
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance = request.user)
-
-        if form.is_valid():
-            form.save()
+        profile_form = EditProfileForm(request.POST, instance = request.user.profile)
+        user_form = UserForm(request.POST, instance=request.user)
+        if profile_form.is_valid() and user_form.is_valid():
+            profile_form.save()
+            user_form.save() 
             return redirect('/profile/1')
     else:
-        form = EditProfileForm(instance = request.user)
-        args = {'form':form}
-        return render(request,'edit_profile.html', args)
+        profile_form = EditProfileForm(instance = request.user.profile)
+        user_form=UserForm(instance = request.user)
+        return render(request,'edit_profile.html', {'user_form': user_form,'profile_form': profile_form})
 
 
 def follow(request, profile_id):
