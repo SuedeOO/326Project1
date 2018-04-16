@@ -40,3 +40,7 @@ class ProfileAdmin(admin.ModelAdmin):
     		'fields': [('following', 'favorites')]
     	}),
     )
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin) :
+	list_display = ('user', 'created', 'body')
