@@ -47,8 +47,8 @@ class Mix(models.Model):
     length = models.DurationField()
     upload_date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=200, blank=True, null=True)
-    like_count = models.IntegerField()
-    play_count = models.IntegerField()
+    like_count = models.IntegerField(default=0)
+    play_count = models.IntegerField(default=0)
     playlist = models.ManyToManyField('Track', through='PlaylistMembership')
 
     def __str__(self):

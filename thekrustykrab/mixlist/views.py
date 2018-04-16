@@ -5,6 +5,9 @@ from django.forms.models import model_to_dict
 from django.http import HttpRequest
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from django.urls import reverse
+from django.utils.text import slugify
+from datetime import timedelta
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
@@ -41,6 +44,20 @@ class EditMixView(generic.DetailView):
     
 class UploadMixView(generic.TemplateView):
     template_name = 'editor_upload.html'
+
+# New upload views here
+from .forms import UploadMixModelForm
+class CreateMixView(generic.CreateView):
+    model = Mix
+    template_name = 'mix_upload.html'
+    fields = ('title', 'audio_file')
+
+    def form_valid(self, form):
+        form.instance.slug = slugify(form.instance.title)
+        form.instance.uploader = self.request.user.profile
+        form.instance.length = timedelta()
+        return super(CreateMixView, self).form_valid(form)
+
 
 class ProfileView(generic.DetailView):
     model = Profile

@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mix/<slug:slug>', MixView.as_view(), name='mix-detail'),
     path('profile/<int:pk>', ProfileView.as_view(), name='profile'),
-	path('upload', UploadMixView.as_view(), name='upload-mix'),
+	path('upload', CreateMixView.as_view(), name='upload-mix'),
     path('edit/<slug:slug>', EditMixView.as_view(), name='edit-mix'),
     path('', MainPageView.as_view(), name = 'main-page'),
     path('charts', ChartsView.as_view(), name = 'view-charts'),
