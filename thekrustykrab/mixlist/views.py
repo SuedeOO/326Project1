@@ -46,7 +46,7 @@ class UploadMixView(generic.TemplateView):
     template_name = 'editor_upload.html'
 
 # New upload views here
-from .forms import UploadMixModelForm
+#from .forms import UploadMixModelForm
 class CreateMixView(generic.CreateView):
     model = Mix
     template_name = 'mix_upload.html'
