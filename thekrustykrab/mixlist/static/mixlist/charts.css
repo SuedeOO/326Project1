@@ -7,7 +7,22 @@ body{
 }
 #chart{
 	margin-left: 14px;
-	width: 98%;
+	width: 98%;	
+}
+
+#chart td{
+	vertical-align: middle;
+}
+
+#uploader{
+	padding: 0px 0px;
+	word-wrap: normal;
+	display: inline-block;
+
+}
+
+#mix{
+	font-weight: 900;
 }
 
 li{
@@ -20,8 +35,31 @@ li{
     overflow-x: hidden;
 }
 
-a[href*="#1"] {
-  padding-right: 20px;
-  background: url(profile%20view/musicBtn.png) no-repeat 100%;
-  background-size: 15px 15px;
+a {
+	color: black;
+}
+
+a:link {
+    text-decoration: none;
+	
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+	color: black;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+.mix_img {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 100px; /* Set a small width */
 }
