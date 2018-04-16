@@ -120,3 +120,17 @@ class PlaylistMembership(models.Model):
 class Follows(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='person_who_follows')
     follows = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='person_following')
+
+class Comment(models.Model):
+    mix = models.ForeignKey(Mix, on_delete=models.CASCADE, related_name='comments')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=True)
+
+    def approve(selfself):
+        self.approve = True
+        self.save()
+
+    def __str__(self):
+        return self.body
