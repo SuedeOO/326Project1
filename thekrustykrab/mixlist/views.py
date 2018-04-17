@@ -12,7 +12,8 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from mixlist.forms import (
     EditProfileForm,
-    UserForm
+    UserForm,
+    CommentForm
 )
 
 class SignUp(generic.CreateView):
@@ -140,3 +141,17 @@ def removeFavorite(request, mix_id):
     user.save()
     next = request.POST.get('next', '/')
     return redirect(next)
+
+def add_comment(request, slug):
+    mix = Mix.objects.get(slug=slug)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+             comment = comment_form.save(commit=False)
+             comment.mix = mix
+             comment.user = request.user
+             comment.save()
+             return redirect("/mix/"+ slug)
+    else:
+        comment_form = CommentForm()
+        return render(request, 'add_comment_to_mix.html', {'comment_form': comment_form})
