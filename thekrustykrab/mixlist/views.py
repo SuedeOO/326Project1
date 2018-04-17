@@ -122,3 +122,18 @@ def unfollow(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     Follows.objects.filter(owner=user, follows=profile).delete()
     return redirect("/profile/"+profile_id)
+
+def addFavorite(request, mix_id):
+    user = request.user.profile
+    user.favorites.add(mix_id)
+    user.save()
+    next = request.POST.get('next', '/')
+    return redirect(next)
+
+
+def removeFavorite(request, mix_id):
+    user = request.user.profile
+    user.favorites.delete(mix_id)
+    user.save()
+    next = request.POST.get('next', '/')
+    return redirect(next)
