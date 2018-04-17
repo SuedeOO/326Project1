@@ -6,9 +6,8 @@ $("#scrub-bar").change(function(){
     $("#tag-new-time").val(secToHMS(this.value));    
 });
 
-$("#finish").click(function(){    
-    console.log(JSON.stringify(tags));  
-});
+$("#id_json").hide();
+$("label[for='id_json']").remove();
 
 var tags = [];
 
@@ -75,15 +74,19 @@ function displayTags(){
         newhtml = newhtml.replace("¶title", tag.title);
         newhtml = newhtml.replace("¶artist", tag.artist);
         newhtml = newhtml.replace("¶links", tag.links);
-        $("#tags").append(newhtml);	
+        $("#tags").append(newhtml);	        
 	}
+    
+        var title = $("#title").val();
+        var author = $("#author").val();
+        var mix = {title:title, author:author, tags:tags};
+        $("#id_json").val(JSON.stringify(mix));
     
 	$(".tag-remove").click(function() {
 		var par = $(this).parent().parent();        
         var i = parseInt(par.attr("id").substr(3,3));
         tags.splice(i,1);
         displayTags();
-        //par.remove();
 	});
     
     $(".tag-edit").click(function() {

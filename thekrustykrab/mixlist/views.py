@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from .models import Mix, Profile, Follows
+from .models import Mix, Profile, Follows, Track, PlaylistMembership, ExternalLink
 from django.forms.models import model_to_dict
 from django.http import HttpRequest
 from django.contrib.auth.forms import UserCreationForm
@@ -13,13 +13,21 @@ from django.contrib.auth.models import User
 from mixlist.forms import (
     EditProfileForm,
     UserForm,
-    CommentForm
+    CommentForm,
+    RegistrationForm
 )
 
-class SignUp(generic.CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'signup.html'
+def SignUp(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('/')
+
+    else:
+        form = RegistrationForm()
+        args = {'form': form}
+        return render(request, 'signup.html', args)
 
 # Create your views here.
 class MixView(generic.DetailView):
@@ -47,9 +55,26 @@ class MixView(generic.DetailView):
 class LogInView(generic.TemplateView):
     template_name = 'login_signup.html'
 
-class EditMixView(generic.DetailView):
+from .forms import EditMixForm
+class EditMixView(generic.UpdateView):
     model = Mix
     template_name = 'editor_edit.html'
+    fields = ('title','artist')
+    
+    def finish(request):
+        if request.method == 'POST':
+            form = EditMixForm(request.POST)
+            if form.is_valid():
+
+                print(form.cleaned_data['my_form_field_name'])
+
+                return redirect('/')
+        else:
+            form = EditMixForm()
+
+        return render_to_response('contact.html', {
+            'form': form,
+        })
     
 class UploadMixView(generic.TemplateView):
     template_name = 'editor_upload.html'
@@ -154,4 +179,42 @@ def add_comment(request, slug):
              return redirect("/mix/"+ slug)
     else:
         comment_form = CommentForm()
-        return render(request, 'add_comment_to_mix.html', {'comment_form': comment_form})
+        return render(request, 'add_comment_to_mix.html', {'comment_form': comment_form})    
+
+import json
+def edit_mix(request, slug):
+
+    def get_track(tag):
+        try:
+            #TODO: add links if additional ones are provided
+            return Track.objects.get(title=tag['title'], artist=tag['artist'])
+        except:
+            newtrack = Track.objects.create(title=tag['title'], artist=tag['artist'], reference_count=0)
+            links = tag['links'].split(';') #TODO: stop using semicolons
+            for link in links: #TODO: match regex to determine provider
+                ExternalLink.objects.create(track=newtrack, provider='SPOTIFY', url=link)
+            return newtrack
+            
+    mix = Mix.objects.get(slug=slug)
+    mixquery = Mix.objects.filter(slug=slug)
+    if request.method=='POST':
+        edit_mix_form = EditMixForm(request.POST)
+        if edit_mix_form.is_valid():
+            cd = edit_mix_form.cleaned_data
+            data = json.loads(cd.get("json"))
+            #mixquery.update(title=data['title'])
+            #print(data['author'])
+            PlaylistMembership.objects.filter(mix=mix).delete()
+            for tag in data['tags']:
+                track = get_track(tag)
+                time = timedelta(seconds=tag['time'])
+                PlaylistMembership.objects.create(mix=mix, track=track, time=time)
+            return redirect("/mix/" + slug)            
+    else:
+        edit_mix_form = EditMixForm()
+        return render(request, 'editor_edit.html', {'mix': mix, 'edit_mix_form': edit_mix_form}) 
+        
+        
+        
+        
+        
