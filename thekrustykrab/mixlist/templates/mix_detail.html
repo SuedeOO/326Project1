@@ -31,7 +31,7 @@
                                 <a class="card-subtitle mb-2 text-muted" href="{{mix.uploader.get_absolute_url}}"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</a>
                                 <h1 id="username">{{ profile.user.username }}</h1>
                                 {% if user.is_authenticated %}
-                                {% if mix.id in user.profile.favorites.all %}
+                                {% if favoriteMix %}
                                 <a href="{% url 'removeFavorite' mix.id %}" class="btn btn-secondary">removeFavorite</a>
                                 {% else %}
                                 <a href="{% url 'addFavorite' mix.id %}" class="btn btn-primary">addFavorite</a>

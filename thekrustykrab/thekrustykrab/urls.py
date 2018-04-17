@@ -49,5 +49,7 @@ urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', SignUp.as_view(), name='signup'),
     path('profile/<profile_id>/follow', follow, name="follow"),
-    path('profile/<profile_id>/unfollow', unfollow, name="unfollow")
+    path('profile/<profile_id>/unfollow', unfollow, name="unfollow"),
+    path('mix/<mix_id>/addFavorite', addFavorite, name="addFavorite"),
+    path('mix/<mix_id>/removeFavorite', removeFavorite, name="removeFavorite"),
 ]

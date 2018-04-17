@@ -39,6 +39,8 @@ class MixView(generic.DetailView):
                 'links': [model_to_dict(link, fields=('provider', 'url')) for link in member.track.links.all()]
             })
         context['playlist'] = playlist
+        if not self.request.user.is_anonymous:
+            context['favoriteMix'] = self.request.user.profile.favorites.filter(pk=context['mix'].id).exists
         return context
 
 class LogInView(generic.TemplateView):
@@ -133,7 +135,7 @@ def addFavorite(request, mix_id):
 
 def removeFavorite(request, mix_id):
     user = request.user.profile
-    user.favorites.delete(mix_id)
+    user.favorites.remove(mix_id)
     user.save()
     next = request.POST.get('next', '/')
     return redirect(next)
