@@ -111,16 +111,14 @@
 	<script src="{% static 'mixlist/upload.js' %}"></script>	
 	<script id="tag-new" type="text/html">		
 		<!-- #### BLANK TAG TEMPLATE #### -->
-        <div class="tag" id="¶id">			
-			<div class="col-sm-12 row">
-				<input type="" class="col-sm-2 form-control tag-start" placeholder="Start Time" value="¶startTime" readonly>
-				<input type="" class="col-sm-5 form-control tag-title" placeholder="Title" value="¶title" readonly>
-				<input type="" class="col-sm-5 form-control tag-author" placeholder="Artist" value="¶artist" readonly>
+        <div class="tag row" id="¶id">			
+            <div class="col-sm-4">
+				<p><a class="ttime">[¶startTime]</a> <a class="tartist">¶artist</a> - <a class="ttitle">¶title</a></p>
 			</div>
-			<div class="col-sm-12 row">
+			<div class="col-sm-5">
 				<input type="" class="form-control tag-link" placeholder="Links" value="¶links" readonly>
 			</div>
-			<div class="col-sm-12 row">
+			<div class="col-sm-3">
 				<a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-remove">Remove Tag</a>
                 <a class="btn btn-outline-success my-2 my-sm-0 text-muted tag-edit">Edit Tag</a>
 			</div>			
