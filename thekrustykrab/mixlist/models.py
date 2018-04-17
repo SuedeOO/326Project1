@@ -62,6 +62,9 @@ class Mix(models.Model):
     def get_absolute_url(self):
         return reverse('mix-detail', args=[str(self.slug)])
         
+    def get_seconds(self):
+        return self.length.seconds
+        
 class Track(models.Model):
     """
     A track, may be referenced by multiple Mixes
