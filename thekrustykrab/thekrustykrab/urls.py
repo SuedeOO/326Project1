@@ -48,7 +48,7 @@ if settings.DEBUG is True:
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', SignUp.as_view(), name='signup'),
+    path('signup/', SignUp, name='signup'),
     path('profile/<profile_id>/follow', follow, name="follow"),
     path('profile/<profile_id>/unfollow', unfollow, name="unfollow"),
     path('mix/<mix_id>/addFavorite', addFavorite, name="addFavorite"),
