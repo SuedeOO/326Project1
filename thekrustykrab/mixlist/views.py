@@ -154,9 +154,10 @@ def unfollow(request, profile_id):
 
 def addFavorite(request, mix_id):
     user = request.user.profile
-    user.favorites.add(mix_id)
+    if not user.favorites.filter(pk=mix_id).exists():
+        user.favorites.add(mix_id)
     user.save()
-    next = request.POST.get('next', '/')
+    next = request.GET.get('next', '/')
     return redirect(next)
 
 
@@ -164,7 +165,7 @@ def removeFavorite(request, mix_id):
     user = request.user.profile
     user.favorites.remove(mix_id)
     user.save()
-    next = request.POST.get('next', '/')
+    next = request.GET.get('next', '/')
     return redirect(next)
 
 def add_comment(request, slug):

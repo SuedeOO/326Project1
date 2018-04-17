@@ -27,16 +27,19 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <!-- card contents -->
-                            <h4 class="card-title">{{mix.title}}</h5>
-                                <a class="card-subtitle mb-2 text-muted" href="{{mix.uploader.get_absolute_url}}"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</a>
-                                <h1 id="username">{{ profile.user.username }}</h1>
+                            <h4 class="card-title">
                                 {% if user.is_authenticated %}
                                 {% if favoriteMix %}
-                                <a href="{% url 'removeFavorite' mix.id %}" class="btn btn-secondary">removeFavorite</a>
+                                <a href="{% url 'removeFavorite' mix.id %}?next={{request.path}}" class="text-danger" title="unfavorite mix"><i class="fa fa-heart"></i></a>
                                 {% else %}
-                                <a href="{% url 'addFavorite' mix.id %}" class="btn btn-primary">addFavorite</a>
+                                <a href="{% url 'addFavorite' mix.id %}?next={{request.path}}" class="text-danger" title="favorite mix"><i class="far fa-heart"></i></a>
                                 {% endif %}
                                 {% endif %}
+                                {{mix.title}}
+                            </h5>
+                                
+                                <a class="card-subtitle mb-2 text-muted" href="{{mix.uploader.get_absolute_url}}"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</a>
+                                <h1 id="username">{{ profile.user.username }}</h1>
                                 <div class="d-flex justify-content-between mb-2 text-muted">
                                     <small>
                                         <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
