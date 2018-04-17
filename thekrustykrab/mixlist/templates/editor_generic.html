@@ -39,7 +39,34 @@
 					</div>
 				</div>
 			</div>
-            
+			
+			<div class="card mx-2 my-3">
+				<div class="card-body">
+					<audio id="audioFile">
+						<source src="{{mix.audio_file.url}}">
+					</audio>
+					<!-- controls -->
+					<div class="controls d-flex justify-content-center mt-1">
+						<i class="fas fa-lg fa-step-backward mx-3 text-dark"></i>
+						<a>
+							<i class="fas fa-lg fa-play mx-3 text-dark" onclick="togglePlay(this)"></i>
+						</a>
+						<i class="fas fa-lg fa-step-forward mx-3 text-dark"></i>
+					</div>
+
+					<!-- progress bar -->
+					<div class="py-2">
+						<a class="progress-label align-top" id="duration">0:00</a>
+						<div class="progress mt-1">
+							<div class="progress-bar bg-secondary" role="progressbar"  id="progressBar" style="width: 0%"></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+
+
             <!-- #### TAGS #### -->  
 			<div class="text-center separator">
 				<a class="font-weight-bold">Tags</a> <!-- <a class="text-muted">(tracks, articles, images, etc.)</a> --><hr>
