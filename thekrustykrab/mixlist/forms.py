@@ -1,5 +1,5 @@
 from django import forms
-from mixlist.models import Profile
+from mixlist.models import Profile, Comment, Mix
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
