@@ -123,7 +123,7 @@ class Follows(models.Model):
 
 class Comment(models.Model):
     mix = models.ForeignKey(Mix, on_delete=models.CASCADE, related_name='comments')
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)

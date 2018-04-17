@@ -96,7 +96,16 @@
                             </div>
                         </div>
                     </div>
-
+				<!-- display comments -->
+				{% for comment in mix.comments.all %}
+					<div class="comment">
+					<div class="date">{{ comment.created}}</div>
+					<strong>{{ comment.user }}</strong>
+					<p>{{ comment.body|linebreaks }}</p>
+					</div>
+				{% empty %}
+					<p>No comments here yet :(</p>
+				{% endfor %}
                 </div>
 
                 <!-- sidebar -->
