@@ -20,13 +20,8 @@ class CommentForm(forms.ModelForm) :
         model = Comment
         fields = ('body',)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 class EditMixForm(forms.Form):
     json = forms.CharField()
-=======
-=======
->>>>>>> dcddc9e7a214f6999009e736a50686d3ae1d446a
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -43,10 +38,5 @@ class RegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
+        return user 
 
-<<<<<<< HEAD
-        return user 
->>>>>>> dcddc9e7a214f6999009e736a50686d3ae1d446a
-=======
-        return user 
->>>>>>> dcddc9e7a214f6999009e736a50686d3ae1d446a
