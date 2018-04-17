@@ -64,7 +64,8 @@ class CreateMixView(generic.CreateView):
         form.instance.slug = slugify(form.instance.title)
         form.instance.uploader = self.request.user.profile
         form.instance.length = timedelta()
-        return super(CreateMixView, self).form_valid(form)
+        form.save()
+        return redirect('/edit/' + form.instance.slug)
 
 
 class ProfileView(generic.DetailView):
