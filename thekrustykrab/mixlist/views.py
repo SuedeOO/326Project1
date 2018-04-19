@@ -111,7 +111,9 @@ def edit_profile(request):
         if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
             user_form.save() 
-            return redirect('/profile/1')
+            pk = request.user.pk
+            pk = str(pk)
+            return redirect('/profile/'+pk)
     else:
         profile_form = EditProfileForm(instance = request.user.profile)
         user_form=UserForm(instance = request.user)
