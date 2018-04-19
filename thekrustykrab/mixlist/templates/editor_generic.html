@@ -8,105 +8,118 @@
 {% endblock %}
 
 {% block content %}
+    {% if user == mix.uploader.user %}
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-6">
-			<h1 class="jumbotron-heading" id="upload-a-mix">{% block heading %}{% endblock %}</h1>
-		</div>
-	</div>		
-	<div class="row">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-6">
-			{% block file %}{% endblock %}
-            
-            <!-- #### BASIC DATA #### -->
-			<div class="font-weight-bold text-center separator">
-				Basic Data <hr>
-			</div>
-			<div class="upload-section">
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">Title:</label>
-					<div class="col-sm-10">
-						<input type="" class="form-control" id="title" placeholder="" value="{{mix.title}}">
-					</div>
-				</div>	
-				<div class="form-group row">					
-					<label class="col-sm-2 col-form-label">Author:</label>
-					<div class="col-sm-10">
-						<input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)" value="{{mix.artist}}">
-					</div>
-				</div>
-			</div>
-			
-			<div class="card mx-2 my-3">
-				<div class="card-body">
-					<audio id="audioFile">
-						<source src="{{mix.audio_file.url}}">
-					</audio>
-					<!-- controls -->
-					<div class="controls d-flex justify-content-center mt-1">
-						<i class="fas fa-lg fa-step-backward mx-3 text-dark"></i>
-						<a>
-							<i class="fas fa-lg fa-play mx-3 text-dark" onclick="togglePlay(this)"></i>
-						</a>
-						<i class="fas fa-lg fa-step-forward mx-3 text-dark"></i>
-					</div>
-
-					<!-- progress bar -->
-					<div class="py-2">
-						<a class="progress-label align-top" id="duration">0:00</a>
-						<div class="progress mt-1">
-							<div class="progress-bar bg-secondary" role="progressbar"  id="progressBar" style="width: 0%"></div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-
-
-
-            <!-- #### TAGS #### -->  
-			<div class="text-center separator">
-				<a class="font-weight-bold">Tags</a> <!-- <a class="text-muted">(tracks, articles, images, etc.)</a> --><hr>
-			</div>
-            
-            <div class="scrub-bar-container">
-                <input type="range" min="0" max="{{mix.get_seconds}}" value="0" class="slider" id="scrub-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h1 class="jumbotron-heading" id="upload-a-mix">{% block heading %}{% endblock %}</h1>
             </div>
-            
-            <div class="col-sm-12 row">
-				<input type="" class="col-sm-2 form-control" id="tag-new-time" placeholder="" value="00:00:00" readonly>
-				<input type="" class="col-sm-5 form-control" id="tag-new-artist" placeholder="Artist" value="">
-                <input type="" class="col-sm-5 form-control" id="tag-new-title" placeholder="Title" value="">				
-			</div>
-			<div class="col-sm-12 row">
-				<input type="" class="form-control" id="tag-new-links" placeholder="Links" value="">
-			</div>
-            
-            <div class="upload-section">
-				<a class="btn btn-outline-success my-2 my-sm-0 text-muted" id="tag-add">Add Tag</a>
-			</div>
-            
-			<div class="upload-section" id="tags">
-				{% block tags %}{% endblock %}
-			</div>
-			
-		<div>
-		<div class="col-lg-3"></div>
-	 </div>
-	 <div class="row">
-		<div class="col-lg-12 text-center upload-section">
-            <form method="post" action="" id="json-form">
-                {% csrf_token %}
-                {{ edit_mix_form.as_p }}
-                <input type="submit" class="btn btn-outline-success my-2 my-sm-0 text-muted" id="finish">
-            </form>
-		</div>
-	</div>
-</div>
+        </div>		
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                {% block file %}{% endblock %}
+                
+                <!-- #### BASIC DATA #### -->
+                <div class="font-weight-bold text-center separator">
+                    Basic Data <hr>
+                </div>
+                <div class="upload-section">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Title:</label>
+                        <div class="col-sm-10">
+                            <input type="" class="form-control" id="title" placeholder="" value="{{mix.title}}">
+                        </div>
+                    </div>	
+                    <div class="form-group row">					
+                        <label class="col-sm-2 col-form-label">Author:</label>
+                        <div class="col-sm-10">
+                            <input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)" value="{{mix.artist}}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mx-2 my-3">
+                    <div class="card-body">
+                        <audio id="audioFile">
+                            <source src="{{mix.audio_file.url}}">
+                        </audio>
+                        <!-- controls -->
+                        <div class="controls d-flex justify-content-center mt-1">
+                            <i class="fas fa-lg fa-step-backward mx-3 text-dark"></i>
+                            <a>
+                                <i class="fas fa-lg fa-play mx-3 text-dark" onclick="togglePlay(this)"></i>
+                            </a>
+                            <i class="fas fa-lg fa-step-forward mx-3 text-dark"></i>
+                        </div>
 
+                        <!-- progress bar -->
+                        <div class="py-2">
+                            <a class="progress-label align-top" id="duration">0:00</a>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-secondary" role="progressbar"  id="progressBar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+                <!-- #### TAGS #### -->  
+                <div class="text-center separator">
+                    <a class="font-weight-bold">Tags</a> <!-- <a class="text-muted">(tracks, articles, images, etc.)</a> --><hr>
+                </div>
+                
+                <div class="scrub-bar-container">
+                    <input type="range" min="0" max="{{mix.get_seconds}}" value="0" class="slider" id="scrub-bar">
+                </div>
+                
+                <div class="col-sm-12 row">
+                    <input type="" class="col-sm-2 form-control" id="tag-new-time" placeholder="" value="00:00:00" readonly>
+                    <input type="" class="col-sm-5 form-control" id="tag-new-artist" placeholder="Artist" value="">
+                    <input type="" class="col-sm-5 form-control" id="tag-new-title" placeholder="Title" value="">				
+                </div>
+                <div class="col-sm-12 row">
+                    <input type="" class="form-control" id="tag-new-links" placeholder="Links" value="">
+                </div>
+                
+                <div class="upload-section">
+                    <a class="btn btn-outline-success my-2 my-sm-0 text-muted" id="tag-add">Add Tag</a>
+                </div>
+                
+                <div class="upload-section" id="tags">
+                    {% block tags %}{% endblock %}
+                </div>
+                
+            <div>
+            <div class="col-lg-3"></div>
+         </div>
+         <div class="row">
+            <div class="col-lg-12 text-center upload-section">
+                <form method="post" action="" id="json-form">
+                    {% csrf_token %}
+                    {{ edit_mix_form.as_p }}
+                    <input type="submit" class="btn btn-outline-success my-2 my-sm-0 text-muted" id="finish">
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h1 class="jumbotron-heading">ERROR: can't edit this mix</h1>
+                <script language="javascript" type="text/javascript">                    
+                    window.location.href = "{% url 'upload-mix' %}";
+                </script>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
 
 {% block javascript %}

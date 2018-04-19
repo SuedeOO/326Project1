@@ -55,27 +55,6 @@ class MixView(generic.DetailView):
 class LogInView(generic.TemplateView):
     template_name = 'login_signup.html'
 
-from .forms import EditMixForm
-class EditMixView(generic.UpdateView):
-    model = Mix
-    template_name = 'editor_edit.html'
-    fields = ('title','artist')
-    
-    def finish(request):
-        if request.method == 'POST':
-            form = EditMixForm(request.POST)
-            if form.is_valid():
-
-                print(form.cleaned_data['my_form_field_name'])
-
-                return redirect('/')
-        else:
-            form = EditMixForm()
-
-        return render_to_response('contact.html', {
-            'form': form,
-        })
-    
 class UploadMixView(generic.TemplateView):
     template_name = 'editor_upload.html'
 
@@ -183,6 +162,7 @@ def add_comment(request, slug):
         return render(request, 'add_comment_to_mix.html', {'comment_form': comment_form})    
 
 import json
+from .forms import EditMixForm
 def edit_mix(request, slug):
 
     def get_track(tag):
@@ -203,6 +183,7 @@ def edit_mix(request, slug):
         if edit_mix_form.is_valid():
             cd = edit_mix_form.cleaned_data
             data = json.loads(cd.get("json"))
+            #TODO allow for editing title and author
             #mixquery.update(title=data['title'])
             #print(data['author'])
             PlaylistMembership.objects.filter(mix=mix).delete()
@@ -213,7 +194,7 @@ def edit_mix(request, slug):
             return redirect("/mix/" + slug)            
     else:
         edit_mix_form = EditMixForm()
-        return render(request, 'editor_edit.html', {'mix': mix, 'edit_mix_form': edit_mix_form}) 
+        return render(request, 'editor_edit.html', {'mix': mix, 'edit_mix_form': edit_mix_form, 'user':request.user}) 
         
         
         
