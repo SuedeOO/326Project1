@@ -37,7 +37,7 @@ class ProfileAdmin(admin.ModelAdmin):
     		'fields': ('user', 'profile_image', 'location', 'about_me')
     	}),
     	('Profile Lists', {
-    		'fields': [('following', 'favorites')]
+    		'fields': ['favorites']
     	}),
     )
 

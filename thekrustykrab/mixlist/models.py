@@ -15,7 +15,6 @@ class Profile(models.Model):
     #page of mixes
     favorites = models.ManyToManyField('Mix', blank=True)
     #page of liked profiles
-    following = models.ManyToManyField('self', blank=True)
     def __str__(self):
         return self.user.get_username()
     #for admin view
