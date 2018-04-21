@@ -59,34 +59,38 @@
 				
 		    	<div class="col-lg-4">
 					<div class="bg-light p-2 rounded">
-						<h3>{{ profile.user.username }}'s uploaded mixes</h3>
-						<div class="mixes">
-							{% for mix in mixs %}
-							<h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
-							{% endfor %}
+						<div class="card" style="width: 18rem;">
+  							<h3>{{ profile.user.username }}'s uploaded mixes</h3>
+  								<ul class="list-group list-group-flush">
+  								{% for mix in mixs %}
+  								<li><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></li>
+								{% endfor %}
+  								</ul>
 						</div>
 					</div>
 
 		    	</div>
 		    	<div class="col-lg-4">
 					<div class="bg-light p-2 rounded">
-						<h3>{{ profile.user.username }}'s Followees</h3>
-						<div class="follows">	
+						<div class="card" style="width: 18rem;">
+							<h3>{{ profile.user.username }}'s Followees</h3>
+							<ul class="list-group list-group-flush">	
 							{% for f in follows.all %}
 								{% if profile == f.owner %}
-								<h6><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></h6>
+								<li><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></li>
 								{% endif %}
 							{% endfor %}
-						</div>
+							</ul>
 					</div>
 					<p></p>
 					<div class="bg-light p-2 rounded">
+						<div class="card" style="width: 18rem;">
 						<h3>{{ profile.user.username }}'s Favorite Mixes</h3>
-						<div class="favorites">
+						<ul class="list-group list-group-flush">
 							{% for mix in profile.favorites.all %}
-							<h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
+							<li><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></li>
 							{% endfor %}
-						</div>
+						</ul>
 					</div>
 		    	</div>
 			</div>
