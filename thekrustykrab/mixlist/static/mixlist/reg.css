@@ -1,4 +1,13 @@
 .col-centered{
     float: none;
     margin: 0 auto;
+
+}
+.container-fluid{
+
+	background-image: url(https://s7.postimg.cc/f6kouc0a3/login-page_bg.jpg);
+	background-size: cover;
+	position: relative;
+    height:100%;
+    width: 100%
 }
