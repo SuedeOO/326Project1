@@ -11,6 +11,7 @@
 {% block javascript %}
 <script type="text/javascript">
     let playlist = {{playlist|safe}};
+    let mixId ={{mix.id}};
 </script>
 <script src="{% static 'mixlist/player.js' %}"></script>
 {% endblock %}
