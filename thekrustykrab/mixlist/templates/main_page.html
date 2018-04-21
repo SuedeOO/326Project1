@@ -36,9 +36,11 @@
             </a>
             <div class="card-body">
               <a href ="{{mix.get_absolute_url}}">
-              <h4 class="card-title">{{mix.title}}</h4>
+              <h4 class="card-title"><u>{{mix.title}}</u></h4>
               </a>
-              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+              <a href="{% url 'profile' mix.uploader.pk %}">
+              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"><u></i>{{mix.uploader}}</u></h6>
+              </a>
               <div class="d-flex justify-content-between mb-2 text-muted">
                 <small>
                   <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
