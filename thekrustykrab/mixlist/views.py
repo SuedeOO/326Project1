@@ -148,6 +148,11 @@ def removeFavorite(request, mix_id):
     user.save()
     next = request.GET.get('next', '/')
     return redirect(next)
+def addrecentPlayed(request):
+    user = request.user.profile
+    if not user.recentPlayed.filter(pk=mix_id).exists():
+        user.recentPlayed.add(mix_id)
+    user.save()
 
 def add_comment(request, slug):
     mix = Mix.objects.get(slug=slug)
