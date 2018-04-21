@@ -1,3 +1,11 @@
 body {
   padding-top: 3.5rem;
+
+}
+.container {
+    position: relative;
+    bottom: 20px;
+
+    width: 75%;
+    border: 0px solid #8AC007;
 }
