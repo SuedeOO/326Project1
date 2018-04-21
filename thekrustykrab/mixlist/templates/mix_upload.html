@@ -1,5 +1,11 @@
 {% extends "base_generic.html" %}
 
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href ="{% static 'mixlist/upload_mix.css' %}"/>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <h1>Upload</h1>
