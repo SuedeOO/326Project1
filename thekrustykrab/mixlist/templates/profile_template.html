@@ -47,11 +47,13 @@
 							{% endif %}
 							<h1 id="username">{{ profile.user.username }}</h1>
 							{% if user.is_authenticated %}
-							{% if user.profile in bfollows %}
-							<a href="{% url 'unfollow' profile.id %}" class="btn btn-secondary">Unfollow</a>
-							{% else %}
-							<a href="{% url 'follow' profile.id %}" class="btn btn-primary">Follow</a>
-							{% endif %}
+								{% if user.profile == profile %}
+									<a href="{% url 'edit-profile' %}" class="btn btn-primary">Edit Profile</a>
+								{% elif user.profile in bfollows %}
+									<a href="{% url 'unfollow' profile.id %}" class="btn btn-secondary">Unfollow</a>
+								{% else %}
+									<a href="{% url 'follow' profile.id %}" class="btn btn-primary">Follow</a>
+								{% endif %}
 							{% endif %}
 						</div>
 					</div>
