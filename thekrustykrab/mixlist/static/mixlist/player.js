@@ -10,9 +10,21 @@ for (var i = 0; i < trackTimestamps.length; i++) {
     }
 }
 
+let recordListen =() =>{
+    fetch('/mix/'+mixId +'/addrecentPlayed',{
+        method:'POST'
+    });
+
+}
+
 let togglePlay = (button) => {
+
     if (file.paused) {
         file.play();
+        if(!hasClickedPlay){
+            hasClickedPlay = true;
+            recordListen();
+        }
     } else {
         file.pause();
     }
