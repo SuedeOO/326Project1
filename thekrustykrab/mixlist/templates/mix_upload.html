@@ -1,6 +1,13 @@
 {% extends "base_generic.html" %}
 
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href ="{% static 'mixlist/upload_mix.css' %}"/>
+{% endblock %}
+
 {% block content %}
+<div class="jumbotron">
 <div class="container">
     <h1>Upload</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
@@ -12,5 +19,5 @@
     </form>
 
 </div>
-
+</div>
 {% endblock %}
