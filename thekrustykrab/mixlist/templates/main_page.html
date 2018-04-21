@@ -6,6 +6,13 @@
 <link rel="stylesheet" type="text/css" href="{% static 'mixlist/main_page.css' %}" />
 {% endblock %}
 {% block content %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+</script>
+<script src="{% static 'mixlist/mainPage.js' %}"></script>
+{% endblock %}
 <main role="main">
 
 
@@ -13,45 +20,55 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
 
   <div class="jumbotron" style="background-image: url(https://s9.postimg.cc/3xc9zfwtr/image.jpg); background-size: cover">
-   
-<div class="container" >
-  <marquee  behavior=alternate direction=left align=middle scrollamount=15><FONT color=#FFFFFF size=15>Welcome to Mixlist</marquee>
-  <!-- Example row of columns -->
-  <div class="card-deck">
-    {% for mix in mixes %}
-    <div class="card" >
-      <a href ="{{mix.get_absolute_url}}">
-        {% if mix.image %}
-        <img class="card-img" src="{{mix.image.url}}">
-        {% else %}
-        <img class="card-img" src="https://s9.postimg.cc/9o2gdicn3/2010011600151075.jpg">
-        {% endif %}
-      </a>
-      <div class="card-body">
-        <h4 class="card-title">{{mix.title}}</h4>
-        <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
-        <div class="d-flex justify-content-between mb-2 text-muted">
-          <small>
-            <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
-          </small>
-          <small>
-            <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
-          </small>
-          <small>
-            <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
-          </small>
+
+    <div id ="div_one" class="container" >
+      <marquee  behavior=alternate direction=left align=middle scrollamount=15><FONT color=#FFFFFF size=15>Welcome to Mixlist</marquee>
+        <!-- Example row of columns -->
+        <div class="card-deck">
+          {% for mix in mixes %}
+          <div class="card" >
+            <a href ="{{mix.get_absolute_url}}">
+              {% if mix.image %}
+              <img class="card-img" src="{{mix.image.url}}">
+              {% else %}
+              <img class="card-img" src="https://s9.postimg.cc/9o2gdicn3/2010011600151075.jpg">
+              {% endif %}
+            </a>
+            <div class="card-body">
+              <a href ="{{mix.get_absolute_url}}">
+              <h4 class="card-title">{{mix.title}}</h4>
+              </a>
+              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</h6>
+              <div class="d-flex justify-content-between mb-2 text-muted">
+                <small>
+                  <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+                </small>
+                <small>
+                  <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+                </small>
+                <small>
+                  <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+                </small>
+              </div>
+              <p>{{mix.description}}</p>
+            </div>
+          </div>
+          {% endfor %}
         </div>
-        <p>{{mix.description}}</p>
+
       </div>
-    </div>
-    {% endfor %}
-  </div>
+      <hr>
+      <div id="gmn_cart">
 
-</div>
-<hr>
+        <h3><FONT color=#FFFFFF size=5>{{ request.session.mix_id }}'s Favorite Mixes</h3>
+        <div class="favorites">
+          {% for mix in profile.favorites.all %}
+          <h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
+          {% endfor %}
+        </div>
+      </div>
+    </div> <!-- /container -->
 
-</div> <!-- /container -->
 
-
-</main>
-{% endblock %}
+  </main>
+  {% endblock %}
