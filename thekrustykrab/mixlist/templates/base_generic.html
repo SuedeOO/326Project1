@@ -32,14 +32,15 @@
                     <a class="nav-link" href="{% url 'upload-mix' %}">Upload</a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          {{ user.get_username }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' user.pk %}">
+                            {% if user.profile.profile_image %}
+                                <img src="{{ user.profile.profile_image.url }}" height=20 width=20>
+                            {% else %}
+                                <img src="http://via.placeholder.com/20x20">
+                            {% endif %}
+                            {{ user.get_username }}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'profile' user.pk %}">My Profile</a>
-                            <a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Profile</a>
-                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
