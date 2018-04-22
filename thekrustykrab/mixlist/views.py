@@ -181,41 +181,73 @@ def add_comment(request, slug):
         return render(request, 'add_comment_to_mix.html', {'comment_form': comment_form})    
 
 import json
+import re
 from .forms import EditMixForm
 def edit_mix(request, slug):
 
     def get_track(tag):
-        try:
-            #TODO: add links if additional ones are provided
-            return Track.objects.get(title=tag['title'], artist=tag['artist'])
-        except:
+        trackQuery = Track.objects.filter(title=tag['title'], artist=tag['artist'])
+        if len(trackQuery) >= 1: 
+            track = trackQuery[0]
+            track = Track.objects.get(title=tag['title'], artist=tag['artist'])
+            taggedLinks = tag['links'] #from input
+            definedProviders = [link.provider for link in track.links.all()]            
+            for link in taggedLinks:                
+                prov = "OTHER"                
+                if "soundcloud" in link: #m = re.match("(https?://)?soundcloud.com", link) perhaps use this later
+                    prov = "SOUNDCLOUD"
+                elif "spotify" in link:
+                    prov = "SPOTIFY"
+                elif "apple" in link or "itunes" in link:
+                    prov = "APPLEMUSIC"
+                elif "youtu" in link:
+                    prov = "YOUTUBE" 
+                
+                if prov == "OTHER" or not prov in definedProviders:
+                    ExternalLink.objects.create(track=track, provider=prov, url=link)                    
+                
+            return track
+        else:
             newtrack = Track.objects.create(title=tag['title'], artist=tag['artist'], reference_count=0)
-            links = tag['links'].split(';') #TODO: stop using semicolons
-            for link in links: #TODO: match regex to determine provider
-                ExternalLink.objects.create(track=newtrack, provider='SPOTIFY', url=link)
+            links = tag['links']
+            for link in links:                
+                prov = "OTHER"                
+                if "soundcloud" in link: #m = re.match("(https?://)?soundcloud.com", link) perhaps use this later
+                    prov = "SOUNDCLOUD"
+                elif "spotify" in link:
+                    prov = "SPOTIFY"
+                elif "apple" in link or "itunes" in link:
+                    prov = "APPLEMUSIC"
+                elif "youtu" in link:
+                    prov = "YOUTUBE"                
+                ExternalLink.objects.create(track=newtrack, provider=prov, url=link)
             return newtrack
             
     mix = Mix.objects.get(slug=slug)
     mixquery = Mix.objects.filter(slug=slug)
-    if request.method=='POST':
-        edit_mix_form = EditMixForm(request.POST)
-        if edit_mix_form.is_valid():
-            cd = edit_mix_form.cleaned_data
-            data = json.loads(cd.get("json"))
-            #TODO allow for editing title and author
-            #mixquery.update(title=data['title'])
-            #print(data['author'])
-            PlaylistMembership.objects.filter(mix=mix).delete()
-            for tag in data['tags']:
-                track = get_track(tag)
-                time = timedelta(seconds=tag['time'])
-                PlaylistMembership.objects.create(mix=mix, track=track, time=time)
-            return redirect("/mix/" + slug)            
+    if request.user == mix.uploader.user:
+        if request.method=='POST':
+            edit_mix_form = EditMixForm(request.POST)
+            if edit_mix_form.is_valid():
+                cd = edit_mix_form.cleaned_data
+                data = json.loads(cd.get("json"))
+                #TODO allow for editing title and author
+                #mixquery.update(title=data['title'])
+                #print(data['author'])
+                print("author" + data['author'])
+                mixquery.update(artist=data['author'], description=data['desc'])
+                PlaylistMembership.objects.filter(mix=mix).delete()
+                for tag in data['tags']:
+                    track = get_track(tag)
+                    time = timedelta(seconds=tag['time'])
+                    PlaylistMembership.objects.create(mix=mix, track=track, time=time)
+                return redirect("/mix/" + slug)            
+        else:
+            edit_mix_form = EditMixForm()
+            return render(request, 'editor_edit.html', {'mix': mix, 'edit_mix_form': edit_mix_form, 'user':request.user}) 
     else:
-        edit_mix_form = EditMixForm()
-        return render(request, 'editor_edit.html', {'mix': mix, 'edit_mix_form': edit_mix_form, 'user':request.user}) 
-        
-        
+        return redirect('upload-mix')
+            
         
         
         

@@ -77,13 +77,10 @@ class Track(models.Model):
     
     def get_links(self):        
         links = self.links.all()
-        if links:
-            combined = ""
-            for link in links:
-                combined += link.url + ";"
-            return combined.rstrip(";")
-        else:
-            return ""
+        urls = []
+        for link in links:
+            urls.append(link.url)
+        return urls
             
     def __str__(self):
         return str(self.artist) + " - " + str(self.title)

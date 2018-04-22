@@ -1,3 +1,11 @@
+$("#author").change(function(){    
+    displayTags();    
+});
+
+$('#desc').on('input propertychange', function() {
+    displayTags(); 
+});
+
 $("#tag-add").click(function(){	
 	addTag();
 });
@@ -16,7 +24,7 @@ function addTag(){
     tag.time = parseInt($("#scrub-bar").val());
     tag.title = $("#tag-new-title").val();
     tag.artist = $("#tag-new-artist").val();
-    tag.links = $("#tag-new-links").val();
+    tag.links = $("#tag-new-links").val().split(" ");
     clearNewTagErrors();
     if(validate(tag)){       
         tags.push(tag);
@@ -31,6 +39,7 @@ function addExistingTag(time, title, artist, links){
     tag.time = HMSToSec(time);
     tag.title = title;
     tag.artist = artist;
+    console.log(links);
     tag.links = links;
     tags.push(tag);   
 }
@@ -54,32 +63,34 @@ function validate(tag){
         $("#tag-new-artist").addClass("is-invalid");
         isValid = false;
     }
-    
+    /*
     if(tag.links === ""){ //TODO: validate with url patterns
         $("#tag-new-links").addClass("is-invalid");
         isValid = false;
     }
-    
+    */
     return isValid;
 }
 
 function displayTags(){
 	$("#tags").html("");
         
-    for(i = 0; i < tags.length; i++) {  
+    for(i = 0; i < tags.length; i++){  
         tag = tags[i];
         newhtml = $("#tag-new").html();
         newhtml = newhtml.replace("¶id", "tag" + i);        
         newhtml = newhtml.replace("¶startTime", secToHMS(tag.time));
         newhtml = newhtml.replace("¶title", tag.title);
         newhtml = newhtml.replace("¶artist", tag.artist);
-        newhtml = newhtml.replace("¶links", tag.links);
+        
+        newhtml = newhtml.replace("¶links", getLinks(tag));
         $("#tags").append(newhtml);	        
 	}
     
         var title = $("#title").val();
         var author = $("#author").val();
-        var mix = {title:title, author:author, tags:tags};
+        var desc = $("#desc").val();
+        var mix = {title:title, author:author, tags:tags, desc:desc};
         $("#id_json").val(JSON.stringify(mix));
     
 	$(".tag-remove").click(function() {
@@ -96,7 +107,7 @@ function displayTags(){
         $("#scrub-bar").change();    
         $("#tag-new-title").val(tags[i].title);    
         $("#tag-new-artist").val(tags[i].artist);    
-        $("#tag-new-links").val(tags[i].links);
+        $("#tag-new-links").val(getLinks(tags[i]));
         tags.splice(i,1);
         displayTags();
 	});
@@ -126,6 +137,14 @@ function secToHMS(seconds){
 function HMSToSec(HMS){ 
     var split = HMS.split(':');
     return (+split[0])*3600 + (+split[1])*60 + (+split[2]);  
+}
+
+function getLinks(tag){
+    var linksCombined = "";
+        for(j = 0; j < tag.links.length; j++){ 
+            linksCombined = linksCombined + " " + tag.links[j];
+        }
+    return linksCombined;
 }
 
 function compareTags(a, b){

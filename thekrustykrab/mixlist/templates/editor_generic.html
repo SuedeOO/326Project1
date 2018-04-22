@@ -36,7 +36,17 @@
                     <div class="form-group row">					
                         <label class="col-sm-2 col-form-label">Author:</label>
                         <div class="col-sm-10">
+                            {% if mix.artist == None %}
+                            <input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)" value="">
+                            {% else %}
                             <input type="" class="form-control" id="author" placeholder="(Leave black if you are the author)" value="{{mix.artist}}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Description:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="desc">{% if mix.description != None %}{{mix.description}}{% endif %}</textarea>                            
                         </div>
                     </div>
                 </div>
@@ -108,17 +118,9 @@
         </div>
     </div>
     {% else %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                <h1 class="jumbotron-heading">ERROR: can't edit this mix</h1>
-                <script language="javascript" type="text/javascript">                    
-                    window.location.href = "{% url 'upload-mix' %}";
-                </script>
-            </div>
-        </div>
-    </div>
+        <script language="javascript" type="text/javascript">                    
+            window.location.href = "{% url 'upload-mix' %}";
+        </script>            
     {% endif %}
 {% endblock %}
 
