@@ -12,6 +12,7 @@
 <script type="text/javascript">
     let playlist = {{playlist|safe}};
     let mixId ={{mix.id}};
+    let CSRF_TOKEN = '{{ csrf_token }}';
 </script>
 <script src="{% static 'mixlist/player.js' %}"></script>
 {% endblock %}
@@ -53,6 +54,9 @@
                                     </small>
                                 </div>
                                 <p>{{mix.description}}</p>
+                                {% if mix.uploader.user.username == user.username %}
+                                <a class="btn btn-warning btn-sm" href="{% url 'edit-mix' mix.slug %}">Edit Mix</a>
+                                {% endif %}
                             </div>
                         </div>
                         <!-- card image -->
