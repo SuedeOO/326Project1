@@ -1,0 +1,19 @@
+div {
+    /* border-style: solid; */
+    text-align: center;
+    margin: auto;
+}
+
+div.mixes {
+	overflow: auto;
+}
+
+.tab-pane {
+	height: 500px !important;
+	overflow: auto;
+}
+ 
+img {
+	height: 20px;
+	width: 20px;
+}
