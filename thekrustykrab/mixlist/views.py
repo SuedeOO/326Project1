@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from datetime import timedelta
 from django.contrib.auth.forms import UserChangeForm 
+from django.db.models.functions import Lower
 from django.contrib.auth.models import User
 from mixlist.forms import (
     EditProfileForm,
@@ -16,6 +17,17 @@ from mixlist.forms import (
     CommentForm,
     RegistrationForm
 )
+
+def Search(request):
+    query = request.GET.get('inputQuery')
+    if query:
+        #gives returns split list of exact matches and contains
+        r_exactP = Profile.objects.filter(user__username__exact=query)
+        r_Profile = Profile.objects.filter(user__username__contains=query).order_by(Lower('user__username')).exclude(id__in=r_exactP)
+        
+        r_exactM = Mix.objects.filter(title__exact=query)
+        r_Mixes = Mix.objects.filter(title__contains=query).order_by('-play_count').exclude(id__in=r_exactM)
+    return render(request, 'search.html', {'r_P': r_Profile,'r_M':r_Mixes, 'r_EP':r_exactP, 'r_EM':r_exactM})
 
 def SignUp(request):
     if request.method == 'POST':
