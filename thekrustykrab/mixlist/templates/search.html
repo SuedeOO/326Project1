@@ -1,27 +1,70 @@
 {% extends "base_generic.html" %}
 
+{% block title %}<title>Search</title>{% endblock %}
 
 {% load static %}
 {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'mixlist/search.css' %}" />
 {% endblock %}
 
 {% block content %}
-	<div class="found-profiles">
-		<h1>Profiles</h1>
-		{% for result in r_EP.all %}
-			<p>{{result.user.username}}</p>
-		{% endfor %}
-		{% for result in r_P.all %}
-			<p>{{result.user.username}}</p>
-		{% endfor %}
-	</div>
-	<div class="found-mixes">
-		<h1>Mixes</h1>
-		{% for mix in r_EM.all %}
-			<p>{{mix.title}}</p>
-		{% endfor %}
-		{% for mix in r_M.all %}
-			<p>{{mix.title}}</p>
-		{% endfor %}
+	<div class="container">
+		<div class="row">
+			<div class="offset-lg-4">
+				<h1>Search results for {{q}}</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="found-profiles col-lg-6">
+				<h1>Profiles</h1>
+				<div class="tab-pane">
+					{% for result in r_EP.all %}
+						<a href="{% url 'profile' result.id%}" class="list-group-item">
+							{% if user.profile.profile_image %}
+	                            <img src="{{ user.profile.profile_image.url }}">
+	                        {% else %}
+	                            <img src="http://via.placeholder.com/20x20">
+	                        {% endif %}
+							{{result.user.username}}
+						</a>
+					{% endfor %}
+					{% for result in r_P.all %}
+						<a href="{% url 'profile' result.id%}" class="list-group-item">
+							{% if result.profile_image %}
+	                            <img src="{{ result.profile_image.url }}">
+	                        {% else %}
+	                            <img src="http://via.placeholder.com/20x20">
+	                        {% endif %}
+							{{result.user.username}}
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="found-mixes col-lg-6">
+				<h1>Mixes</h1>
+				<div class="tab-pane">
+					{% for mix in r_EM.all %}
+						<a href="{{ mix.get_absolute_url }}" class="list-group-item">
+							{% if mix.image %}
+								<img src="{{mix.image.url}}">
+							{% else %}
+								<img src="http://via.placeholder.com/20x20">
+							{% endif %}
+							{{mix.title}}
+						</a>
+					{% endfor %}
+					{% for mix in r_M.all %}
+						<a href="{{ mix.get_absolute_url }}" class="list-group-item">
+							{% if mix.image %}
+								<img src="{{mix.image.url}}">
+							{% else %}
+								<img src="http://via.placeholder.com/20x20">
+							{% endif %}
+							{{mix.title}}
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}
