@@ -4,6 +4,10 @@
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/charts.css' %}" >{% endblock %}
 
     {% block title %}<title>Charts</title>{% endblock %}
+	
+{% block javascript %}
+{% endblock %}
+
 
 {% block content %}
 <!--Dropdown menus-->
@@ -11,72 +15,71 @@
 		<tr>
 			<td>
 				<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Top 5
-				<span class="caret"></span></button>
+				<select class="btn btn-secondary dropdown-toggle">
+				<ul class="dropdown-menu scrollable-menu">
+					<option>Top 5</option>
+					<option>Top 10</option>
+					<option>Top 100</option>
+					</ul>
+				</select>
+				</div>
+			</td>
+			<td>
+				<div class="dropdown">
+				<select class="btn btn-secondary dropdown-toggle">
+					<option>Most Played</option>
+					<option>Most Liked</option>
+				</select>
+				</div>
+			</td>
+			<td>
+				<div class="dropdown"">
+				<select class="btn btn-secondary dropdown-toggle">
+				<ul class="dropdown-menu scrollable-menu">
+						<li><option>All countries</option></li>
+						<li><option>Afghanistan</option></li>
+						<li><option>Albania</option></li>
+						<li><option>Algeria</option></li>
+						<li><option>Andorra</option></li>
+						<li><option>Angola</option></li>
+						<li><option>Antigua</option></li>
+						<li><option>Argentina</option></li>
+						<li><option>Armenia</option></li>
+						<li><option>Aruba</option></li>
+						<li><option>Australia</option></li>
+						<li><option>Austria</option></li>
+						<li><option>Azerbaijan</option></li>
+						<li><option>Bangladesh</option></li>
+						<li><option>Barbados</option></li>
+					</ul>
+				</select>
+				</div>
+			</td>
+			<td>
+				<div class="dropdown"">
+				<select class="btn btn-secondary dropdown-toggle">
+				<ul class="dropdown-menu scrollable-menu">
+						<option>All genres</option>
+						<option>Ambient</option>
+						<option>Drum 'n' Bass</option>
+						<option>Electronic</option>
+						<option>Grime</option>
+						<option>Hip Hop</option>
+						<option>House</option>
+						<option>Reggaeton</option>
+						<option>RnB</option>
+						<option>Trance</option>
+					</ul>	
+				</div>
+			</td>
+			<td>
+				<div class="dropdown"">
+				<select class="btn btn-secondary dropdown-toggle">
+				<ul class="dropdown-menu scrollable-menu">
 					<ul class="dropdown-menu">
-						<li><a href="#">Top 10</a></li>
-						<li><a href="#">Top 50</a></li>
-						<li><a href="#">Top 100</a></li>
-					</ul>	
-				</div>
-			</td>
-			<td>
-				<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Most Played
-				<span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Most Liked</a></li>
-					</ul>	
-				</div>
-			</td>
-			<td>
-				<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">USA
-				<span class="caret"></span></button>
-					<ul class="dropdown-menu scrollable-menu">
-						<li><a href="#">All countries</a></li>
-						<li><a href="#">Afghanistan</a></li>
-						<li><a href="#">Albania</a></li>
-						<li><a href="#">Algeria</a></li>
-						<li><a href="#">Andorra</a></li>
-						<li><a href="#">Angola</a></li>
-						<li><a href="#">Antigua</a></li>
-						<li><a href="#">Argentina</a></li>
-						<li><a href="#">Armenia</a></li>
-						<li><a href="#">Aruba</a></li>
-						<li><a href="#">Australia</a></li>
-						<li><a href="#">Austria</a></li>
-						<li><a href="#">Azerbaijan</a></li>
-						<li><a href="#">Bangladesh</a></li>
-						<li><a href="#">Barbados</a></li>
-					</ul>	
-				</div>
-			</td>
-			<td>
-				<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">All genres
-				<span class="caret"></span></button>
-					<ul class="dropdown-menu scrollable-menu">
-						<li><a href="#">Ambient</a></li>
-						<li><a href="#">Drum 'n' Bass</a></li>
-						<li><a href="#">Electronic</a></li>
-						<li><a href="#">Grime</a></li>
-						<li><a href="#">Hip Hop</a></li>
-						<li><a href="#">House</a></li>
-						<li><a href="#">Reggaeton</a></li>
-						<li><a href="#">RnB</a></li>
-						<li><a href="#">Trance</a></li>
-					</ul>	
-				</div>
-			</td>
-			<td>
-				<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" id="top" type="button" data-toggle="dropdown">This week
-				<span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a href="#">This month</a></li>
-						<li><a href="#">This year</a></li>
-						<li><a href="#">All time</a></li>
+						<option>This month</option>
+						<option>This year</option>
+						<option>All time</option>
 					</ul>	
 				</div>
 			</td>

@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+
+{% load static %}
+{% block css %}
+{% endblock %}
+
+{% block content %}
+	<div class="found-profiles">
+		<h1>Profiles</h1>
+		{% for result in r_EP.all %}
+			<p>{{result.user.username}}</p>
+		{% endfor %}
+		{% for result in r_P.all %}
+			<p>{{result.user.username}}</p>
+		{% endfor %}
+	</div>
+	<div class="found-mixes">
+		<h1>Mixes</h1>
+		{% for mix in r_EM.all %}
+			<p>{{mix.title}}</p>
+		{% endfor %}
+		{% for mix in r_M.all %}
+			<p>{{mix.title}}</p>
+		{% endfor %}
+	</div>
+{% endblock %}

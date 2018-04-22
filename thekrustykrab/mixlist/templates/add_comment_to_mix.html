@@ -1,4 +1,7 @@
 {% extends "base_generic.html" %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/add_comment.css' %}" >{% endblock %}
 
 {% block content %}
     <h1>New comment</h1>

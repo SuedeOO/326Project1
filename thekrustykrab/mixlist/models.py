@@ -14,6 +14,7 @@ class Profile(models.Model):
     about_me = models.TextField(blank=True, null=True)
     #page of mixes
     favorites = models.ManyToManyField('Mix', blank=True)
+    recentPlayed = models.ManyToManyField('Mix',blank=True,related_name='listeners')
     #page of liked profiles
     def __str__(self):
         return self.user.get_username()

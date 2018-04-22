@@ -27,6 +27,7 @@ urlpatterns = [
     path('charts', ChartsView.as_view(), name = 'view-charts'),
     path('editprofile', edit_profile, name = 'edit-profile'),
     path('mix/<slug:slug>/addcomment', add_comment, name='add-comment'),
+    path('search/', Search, name='Search')
 ]
 
 # Use include() to add paths from the catalog application 
@@ -53,4 +54,5 @@ urlpatterns += [
     path('profile/<profile_id>/unfollow', unfollow, name="unfollow"),
     path('mix/<mix_id>/addFavorite', addFavorite, name="addFavorite"),
     path('mix/<mix_id>/removeFavorite', removeFavorite, name="removeFavorite"),
+    path('mix/<mix_id>/addrecentPlayed',addrecentPlayed, name="addrecentPlayed"),
 ]

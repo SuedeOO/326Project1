@@ -11,6 +11,7 @@
 {% block javascript %}
 <script type="text/javascript">
     let playlist = {{playlist|safe}};
+    let mixId ={{mix.id}};
 </script>
 <script src="{% static 'mixlist/player.js' %}"></script>
 {% endblock %}
@@ -109,7 +110,7 @@
 						<p>Please <a href="{% url 'login'%}?next={{request.path}}">log in</a> to leave a comment.</p>
 					{% endif %}
 				<!-- display comments -->
-				{% for comment in mix.comments.all %}
+				{% for comment in mix.comments.all reversed %}
 					<div class="comment">
 					<div class="date">{{ comment.created}}</div>
 					<strong>{{ comment.user }}</strong>
