@@ -12,7 +12,7 @@ $(document).ready(function() {
 	{% for member in mix.playlistmembership_set.all %}
         var links = [];        
         {% for link in member.track.get_links %}
-            links.push("{{ link }}");
+            links.push("{{link}}");
         {% endfor %}
 		addExistingTag("{{member.time}}","{{member.track.title}}","{{member.track.artist}}", links);
 	{% endfor %}

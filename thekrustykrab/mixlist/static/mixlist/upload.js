@@ -23,8 +23,15 @@ function addTag(){
     var tag = {};
     tag.time = parseInt($("#scrub-bar").val());
     tag.title = $("#tag-new-title").val();
+    //tag.title = tag.title.replace(/&#39;/g, "\'");
+    //tag.title = tag.title.replace(/&#34;/g, "\"");
+    //tag.title = tag.title.replace(/&quot;/g, "\"");
     tag.artist = $("#tag-new-artist").val();
-    tag.links = $("#tag-new-links").val().split(" ");
+    //tag.artist = tag.artist.replace(/&#39;/g, "\'");
+    //tag.artist = tag.artist.replace(/&#34;/g, "\"");
+    //tag.title = tag.title.replace(/&quot;/g, "\"");
+    tag.links = $("#tag-new-links").val().split(" ").filter(function(el) {return el.length != 0});
+    
     clearNewTagErrors();
     if(validate(tag)){       
         tags.push(tag);
@@ -35,11 +42,17 @@ function addTag(){
 }
 
 function addExistingTag(time, title, artist, links){
+    title = title.replace(/&#39;/g, "\'");
+    title = title.replace(/&#34;/g, "\"");
+    title = title.replace(/&quot;/g, "\"");
+    artist = artist.replace(/&#39;/g, "\'");
+    artist = artist.replace(/&#34;/g, "\"");
+    artist = artist.replace(/&quot;/g, "\"");
+    
     var tag = {};
     tag.time = HMSToSec(time);
     tag.title = title;
     tag.artist = artist;
-    console.log(links);
     tag.links = links;
     tags.push(tag);   
 }
@@ -91,6 +104,7 @@ function displayTags(){
         var author = $("#author").val();
         var desc = $("#desc").val();
         var mix = {title:title, author:author, tags:tags, desc:desc};
+        
         $("#id_json").val(JSON.stringify(mix));
     
 	$(".tag-remove").click(function() {
@@ -105,7 +119,7 @@ function displayTags(){
         var i = parseInt(par.attr("id").substr(3,3));       
         $("#scrub-bar").val(tags[i].time);
         $("#scrub-bar").change();    
-        $("#tag-new-title").val(tags[i].title);    
+        $("#tag-new-title").val(tags[i].title);
         $("#tag-new-artist").val(tags[i].artist);    
         $("#tag-new-links").val(getLinks(tags[i]));
         tags.splice(i,1);

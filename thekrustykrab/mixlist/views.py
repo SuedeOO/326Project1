@@ -186,15 +186,16 @@ import json
 import re
 from .forms import EditMixForm
 def edit_mix(request, slug):
-
+ 
     def get_track(tag):
         trackQuery = Track.objects.filter(title=tag['title'], artist=tag['artist'])
+        print(tag['title'])
         if len(trackQuery) >= 1: 
             track = trackQuery[0]
             track = Track.objects.get(title=tag['title'], artist=tag['artist'])
-            taggedLinks = tag['links'] #from input
+            taggedLinks = filter(None, tag['links']) #from input
             definedProviders = [link.provider for link in track.links.all()]            
-            for link in taggedLinks:                
+            for link in taggedLinks:               
                 prov = "OTHER"                
                 if "soundcloud" in link: #m = re.match("(https?://)?soundcloud.com", link) perhaps use this later
                     prov = "SOUNDCLOUD"
@@ -233,13 +234,13 @@ def edit_mix(request, slug):
             if edit_mix_form.is_valid():
                 cd = edit_mix_form.cleaned_data
                 data = json.loads(cd.get("json"))
-                #TODO allow for editing title and author
-                #mixquery.update(title=data['title'])
-                #print(data['author'])
-                print("author" + data['author'])
+                #TODO allow for editing title
+                #mixquery.update(title=data['title'])                
                 mixquery.update(artist=data['author'], description=data['desc'])
                 PlaylistMembership.objects.filter(mix=mix).delete()
                 for tag in data['tags']:
+                    tag['title'] = tag['title']
+                    tag['artist'] = tag['artist']
                     track = get_track(tag)
                     time = timedelta(seconds=tag['time'])
                     PlaylistMembership.objects.create(mix=mix, track=track, time=time)
