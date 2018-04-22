@@ -12,6 +12,7 @@
 <script type="text/javascript">
     let playlist = {{playlist|safe}};
     let mixId ={{mix.id}};
+    let CSRF_TOKEN = '{{ csrf_token }}';
 </script>
 <script src="{% static 'mixlist/player.js' %}"></script>
 {% endblock %}

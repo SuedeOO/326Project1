@@ -2,6 +2,7 @@ let file = document.getElementById("audioFile");
 let trackTimestamps = document.getElementsByClassName('track-time');
 let reversePlaylist = playlist.slice().reverse(); // useful for current track
 var currentSong = null;
+var hasClickedPlay = false;
 
 for (var i = 0; i < trackTimestamps.length; i++) {
     trackTimestamps[i].onclick = (aTag) => {
@@ -10,15 +11,17 @@ for (var i = 0; i < trackTimestamps.length; i++) {
     }
 }
 
-let recordListen =() =>{
-    fetch('/mix/'+mixId +'/addrecentPlayed',{
-        method:'POST'
+let recordListen = () => {
+    fetch('/mix/'+ mixId +'/addrecentPlayed', {
+        method:'POST',
+        credentials: "same-origin",
+        headers: {
+            "X-CSRFToken": CSRF_TOKEN,
+        }
     });
-
 }
 
 let togglePlay = (button) => {
-
     if (file.paused) {
         file.play();
         if(!hasClickedPlay){

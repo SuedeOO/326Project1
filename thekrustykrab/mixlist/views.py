@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Mix, Profile, Follows, Track, PlaylistMembership, ExternalLink
 from django.forms.models import model_to_dict
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.urls import reverse
@@ -160,11 +160,13 @@ def removeFavorite(request, mix_id):
     user.save()
     next = request.GET.get('next', '/')
     return redirect(next)
-def addrecentPlayed(request):
+
+def addrecentPlayed(request, mix_id):
     user = request.user.profile
     if not user.recentPlayed.filter(pk=mix_id).exists():
         user.recentPlayed.add(mix_id)
     user.save()
+    return HttpResponse('')
 
 def add_comment(request, slug):
     mix = Mix.objects.get(slug=slug)
