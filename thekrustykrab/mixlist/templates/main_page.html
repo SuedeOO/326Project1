@@ -59,7 +59,7 @@
       <div id="gmn_cart">
         <h3><FONT color=#FFFFFF size=5>{{ user }}'s recent played Mixes</h3>
         <div class="favorites">
-          {% for mix in profile.recentPlayed.all %}
+          {% for mix in user.profile.recentPlayed.all %}
           <h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
           {% endfor %}
         </div>
