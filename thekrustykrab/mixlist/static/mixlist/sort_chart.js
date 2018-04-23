@@ -3,7 +3,7 @@ function sortTable(n) {
   table = document.getElementById("chart");
   switching = true;
   // Set the sorting direction to ascending:
-  dir = "asc"; 
+  dir = "desc"; 
   /* Make a loop that will continue until
   no switching has been done: */
   while (switching) {
@@ -12,23 +12,24 @@ function sortTable(n) {
     rows = table.getElementsByTagName("TR");
     /* Loop through all table rows (except the
     first, which contains table headers): */
+	r=rows.length;
     for (i = 1; i < (rows.length - 1); i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
+      x = parseInt(rows[i].cells[n].innerHTML);
+      y = parseInt(rows[i + 1].cells[n].innerHTML);
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
       if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        if (x > y) {
           // If so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;
         }
       } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        if (x < y) {
           // If so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;
@@ -51,7 +52,12 @@ function sortTable(n) {
       }
     }
   }
-  for (i=1; i<rows.length;i++){
+  setRanks(r);
+}
+
+function setRanks(r){
+	table = document.getElementById("chart");
+	for (i=1; i<r;i++){
 	table.rows[i].cells[0].innerHTML = i; /* Set rank numbers */
   }
 }
