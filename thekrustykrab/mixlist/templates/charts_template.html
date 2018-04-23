@@ -7,6 +7,7 @@
 	
 {% block javascript %}
 <script src="{% static 'mixlist/sort_chart.js' %}"></script>
+<script src="{% static 'mixlist/sorttable.js' %}"></script>
 {% endblock %}
 
 
@@ -89,16 +90,16 @@
 
 <!--Charts Table-->	
 
-    <table class="table table-striped" id="chart"> 
+    <table class="table table-striped sortable" id="chart"> 
 		<thead> 
 			<tr> 
-				<th>#</th>
+				<th style="cursor: pointer;">#</th>
 				<th></th>
-				<th></th>
-				<th onClick="sortTable()">Artist</th>
-				<th>Length</th>
-				<th>Likes</th>
-				<th>Plays</th>
+				<th style="cursor: pointer;">Title</th>
+				<th style="cursor: pointer;">Artist</th>
+				<th style="cursor: pointer;">Length</th>
+				<th style="cursor: pointer;">Likes</th>
+				<th style="cursor: pointer;">Plays</th>
 			</tr> 
 		</thead>
 		<tbody>
