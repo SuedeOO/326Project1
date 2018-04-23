@@ -55,4 +55,5 @@ urlpatterns += [
     path('mix/<mix_id>/addFavorite', addFavorite, name="addFavorite"),
     path('mix/<mix_id>/removeFavorite', removeFavorite, name="removeFavorite"),
     path('mix/<mix_id>/addrecentPlayed',addrecentPlayed, name="addrecentPlayed"),
+    path('removeRecentPlayed',removeRecentPlayed,name="removeRecentPlayed"),
 ]
