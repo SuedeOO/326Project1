@@ -90,12 +90,12 @@
 
 <!--Charts Table-->	
 
-    <table class="table table-striped sortable" id="chart"> 
+    <table id="chart" class="table table-striped sortable" style="table-layout:fixed;"> 
 		<thead> 
 			<tr> 
-				<th style="cursor: pointer;">#</th>
+				<th style="cursor: pointer;" width="5%">#</th>
 				<th></th>
-				<th style="cursor: pointer;">Title</th>
+				<th style="cursor: pointer;" width="40%">Title</th>
 				<th style="cursor: pointer;">Artist</th>
 				<th style="cursor: pointer;">Length</th>
 				<th style="cursor: pointer;">Likes</th>
@@ -106,14 +106,14 @@
 {% for Mix in object_list %}		
 			<tr>
 			<td>{{forloop.counter}}</td>
-			<td width="5%">
+			<td>
 							{% if Mix.image %}
                             <img class="mix_img" src="{{Mix.image.url}}">
                             {% else %}
                             <img class="mix_img" src="http://via.placeholder.com/500x500">
                             {% endif %}
 					</td>
-			<td width="40%"><a id="mix" href="/mix/{{Mix.slug}}">{{ Mix.title }}</a><br /><a id="uploader" href="{{ Mix.uploader.get_absolute_url }}"><i class="fas fa-user mr-1"></i>{{ Mix.uploader }}</a></td>
+			<td><a id="mix" href="/mix/{{Mix.slug}}">{{ Mix.title }}</a><br /><a id="uploader" href="{{ Mix.uploader.get_absolute_url }}"><i class="fas fa-user mr-1"></i>{{ Mix.uploader }}</a></td>
 			<td>{{ Mix.artist }}</td>
 			<td>{{ Mix.length }}</td>
 			<td>{{ Mix.like_count }}</td>
