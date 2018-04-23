@@ -162,6 +162,8 @@ def removeFavorite(request, mix_id):
     return redirect(next)
 
 def addrecentPlayed(request, mix_id):
+    if request.user.is_anonymous:
+        return HttpResponse('')
     user = request.user.profile
     if not user.recentPlayed.filter(pk=mix_id).exists():
         user.recentPlayed.add(mix_id)
