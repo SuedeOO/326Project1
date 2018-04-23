@@ -10,8 +10,10 @@ $("#tag-add").click(function(){
 	addTag();
 });
 
-$("#scrub-bar").change(function(){    
-    $("#tag-new-time").val(secToHMS(this.value));    
+$("#scrub-bar").click(function(){    
+    let newTime = this.value;
+    $("#tag-new-time").val(secToHMS(newTime));
+    file.currentTime = newTime;    
 });
 
 $("#id_json").hide();
@@ -200,5 +202,6 @@ let updateTime = (timestamp) => {
 let updateProgressBar = (timestamp) => {
     let progressBar = document.getElementById("progressBar");
     let pct = 100 * timestamp / file.duration;
-    progressBar.style.width = pct + "%";
+    $("#scrub-bar").val(timestamp);
+    $("#scrub-bar").change();
 }

@@ -67,10 +67,8 @@
 
                         <!-- progress bar -->
                         <div class="py-2">
-                            <a class="progress-label align-top" id="duration">0:00</a>
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-secondary" role="progressbar"  id="progressBar" style="width: 0%"></div>
-                            </div>
+                            <label for="scrub-bar" class="progress-label align-top" id="duration">0:00</label>
+                            <input type="range" min="0" max="{{mix.get_seconds}}" value="0" class="progress slider" id="scrub-bar">
                         </div>
                         
                     </div>
@@ -81,10 +79,6 @@
                 <!-- #### TAGS #### -->  
                 <div class="text-center separator">
                     <a class="font-weight-bold">Tags</a> <!-- <a class="text-muted">(tracks, articles, images, etc.)</a> --><hr>
-                </div>
-                
-                <div class="scrub-bar-container">
-                    <input type="range" min="0" max="{{mix.get_seconds}}" value="0" class="slider" id="scrub-bar">
                 </div>
                 
                 <div class="col-sm-12 row">

@@ -33,7 +33,7 @@ body {
 .slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 90%;
     height: 25px;
     background: #d3d3d3;
     outline: none;
@@ -45,20 +45,15 @@ body {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
+    width: 10px;
     height: 25px;
     background: #4CAF50;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 25px;
+    width: 10px;
     height: 25px;
     background: #4CAF50;
     cursor: pointer;
-}
-
-.scrub-bar-container {
-    padding-top: 20px;
-	padding-bottom: 20px;    
 }
