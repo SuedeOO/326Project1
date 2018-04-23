@@ -17,55 +17,59 @@
 
   <div class="jumbotron">
 
-    <div id ="div_one" class="container" >
+    <div id="div_one" class="container" >
       <h2><FONT color=#000000 size=15>Welcome to Mixlist</h2></FONT>
-        <!-- Example row of columns -->
-        <div class="card-deck">
-          {% for mix in mixes %}
-          <div class="card" >
+      <!-- Example row of columns -->
+      <div class="card-deck">
+        {% for mix in mixes %}
+        <div class="card" >
+          <a href ="{{mix.get_absolute_url}}">
+            {% if mix.image %}
+            <img class="card-img" src="{{mix.image.url}}">
+            {% else %}
+            <img class="card-img" src="https://s9.postimg.cc/9o2gdicn3/2010011600151075.jpg">
+            {% endif %}
+          </a>
+          <div class="card-body">
             <a href ="{{mix.get_absolute_url}}">
-              {% if mix.image %}
-              <img class="card-img" src="{{mix.image.url}}">
-              {% else %}
-              <img class="card-img" src="https://s9.postimg.cc/9o2gdicn3/2010011600151075.jpg">
-              {% endif %}
-            </a>
-            <div class="card-body">
-              <a href ="{{mix.get_absolute_url}}">
               <h4 class="card-title"><u>{{mix.title}}</u></h4>
-              </a>
-              <a href="{% url 'profile' mix.uploader.pk %}">
+            </a>
+            <a href="{% url 'profile' mix.uploader.pk %}">
               <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"><u></i>{{mix.uploader}}</u></h6>
-              </a>
-              <div class="d-flex justify-content-between mb-2 text-muted">
-                <small>
-                  <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
-                </small>
-                <small>
-                  <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
-                </small>
-                <small>
-                  <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
-                </small>
-              </div>
-              <p>{{mix.description}}</p>
+            </a>
+            <div class="d-flex justify-content-between mb-2 text-muted">
+              <small>
+                <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+              </small>
+              <small>
+                <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+              </small>
+              <small>
+                <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+              </small>
             </div>
+            <p>{{mix.description}}</p>
           </div>
-          {% endfor %}
         </div>
-
+        {% endfor %}
       </div>
-      <hr>
-      <div id="gmn_cart">
-        <h3><FONT color=#FFFFFF size=5>{{ user }}'s recent played Mixes</h3>
-        <div class="favorites">
-          {% for mix in user.profile.recentPlayed.all %}
-          <h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
-          {% endfor %}
+    </div>
+
+      {% if user.is_authenticated %}
+      <div id="div_two" class="gmn_cart">
+        <h3><FONT color=#000000 size=3>{{ user }}'s recent played Mixes</h3>
+          <div class="favorites">
+            {% for mix in user.profile.recentPlayed.all %}
+            <h6><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></h6>
+            {% endfor %}
+          </div>
+          <a href="{% url 'removeRecentPlayed' %}"  class="btn btn-light btn-xs">ClearRecord</a></div>
         </div>
-      </div>
-    </div> <!-- /container -->
+        {% endif %}
+
+</div>
 
 
-  </main>
-  {% endblock %}
+
+</main>
+{% endblock %}
