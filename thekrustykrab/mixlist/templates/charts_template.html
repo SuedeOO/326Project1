@@ -6,6 +6,7 @@
     {% block title %}<title>Charts</title>{% endblock %}
 	
 {% block javascript %}
+<script src="{% static 'mixlist/sort_chart.js' %}"></script>
 {% endblock %}
 
 
@@ -26,9 +27,9 @@
 			</td>
 			<td>
 				<div class="dropdown">
-				<select class="btn btn-secondary dropdown-toggle">
-					<option>Most Played</option>
-					<option>Most Liked</option>
+				<select class="btn btn-secondary dropdown-toggle" onchange="sortTable(value)">
+					<option value="2">Most Played</option>
+					<option value="3">Most Liked</option>
 				</select>
 				</div>
 			</td>
