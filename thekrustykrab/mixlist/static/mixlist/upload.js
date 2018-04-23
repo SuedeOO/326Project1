@@ -2,7 +2,7 @@ $("#author").change(function(){
     displayTags();    
 });
 
-$('#desc').on('input propertychange', function() {
+$("#desc").on('input propertychange', function(){
     displayTags(); 
 });
 
@@ -204,4 +204,5 @@ let updateProgressBar = (timestamp) => {
     let pct = 100 * timestamp / file.duration;
     $("#scrub-bar").val(timestamp);
     $("#scrub-bar").change();
+    $("#tag-new-time").val(secToHMS($("#scrub-bar").val()));
 }
