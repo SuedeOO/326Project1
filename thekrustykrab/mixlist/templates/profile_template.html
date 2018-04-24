@@ -17,28 +17,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 mt-2">
-			<div class="jumbotron2">
-				<div class="row">
+			<div class="jumbotron2 row">
 					<div class="col-lg-4">
-						<div class="bg-light p-2 rounded">
-							<table>
-								<tr>
-									<td><b>Date Joined:</b></td>
-									<td>{{ profile.user.date_joined }}</td>
-								</tr>
-								<tr>
-									<td><b>Location:</b></td>
-									<td>{{ profile.location }}
-									</tr>
-									<tr>
-										<td><b>About me:</b></td>
-									</tr>
-									<tr>
-										<td colspan=2 style="word-wrap: break-word">{{ profile.about_me }}</td>
-									</tr>
-								</table>
-							</div>
-						</div>
 						<div>					
 							{% if profile.profile_image %}
 							<img src="{{ profile.profile_image.url }}" height="250" width="250">
@@ -56,51 +36,85 @@
 								{% endif %}
 							{% endif %}
 						</div>
-					</div>
-				</div>
-
-<div class="row">
-	<div class="col-lg-4">
-		<div class="bg-light p-2 rounded">
-			<div class="card" style="width: 18rem;">
-				<h3>{{ profile.user.username }}'s Favorite Mixes</h3>
-				<ul class="list-group list-group-flush">
-					{% for mix in profile.favorites.all %}
-					<li><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></li>
-					{% endfor %}
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-4">
-		<div class="bg-light p-2 rounded">
-			<div class="card" style="width: 18rem;">
-				<h3>{{ profile.user.username }}'s uploaded mixes</h3>
-				<ul class="list-group list-group-flush">
-					{% for mix in mixs %}
-					<li><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></li>
-					{% endfor %}
-				</ul>
-			</div>
-		</div>
-
-	</div>
-	<div class="col-lg-4">
-		<div class="bg-light p-2 rounded">
-			<div class="card" style="width: 18rem;">
-				<h3>{{ profile.user.username }}'s Followees</h3>
-				<ul class="list-group list-group-flush">	
-					{% for f in follows.all %}
-					{% if profile == f.owner %}
-					<li><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></li>
-					{% endif %}
-					{% endfor %}
-				</ul>
-			</div>
-			<p></p>
-		</div>
-	</div>
+                        <div class="bg-light p-2 rounded">
+							<table>
+								<tr>
+									<td><b>Date Joined:</b></td>
+									<td>{{ profile.user.date_joined }}</td>
+								</tr>
+								<tr>
+									<td><b>Location:</b></td>
+									<td>{{ profile.location }}
+									</tr>
+									<tr>
+										<td><b>About me:</b></td>
+									</tr>
+									<tr>
+										<td colspan=2 style="word-wrap: break-word">{{ profile.about_me }}</td>
+									</tr>
+							</table>
+							
+						</div>
+                        <div class="bg-light p-2 rounded">                            
+                            <h3>{{ profile.user.username }}'s Favorite Mixes</h3>
+                            <ul class="list-group list-group-flush">
+                                {% for mix in profile.favorites.all %}
+                                <li><a href="{{mix.get_absolute_url}}">{{ mix.title }}</a></li>
+                                {% endfor %}
+                            </ul>                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="bg-light p-2 rounded">
+                            <h3>{{ profile.user.username }}'s uploaded mixes</h3>				
+                                <div class="card-column">
+                                    {% for mix in mixs %}
+                                        <div class="card">
+                                          <a href ="{{mix.get_absolute_url}}">
+                                            {% if mix.image %}
+                                            <img class="card-img" src="{{mix.image.url}}">
+                                            {% else %}
+                                            <img class="card-img" src="https://s9.postimg.cc/9o2gdicn3/2010011600151075.jpg">
+                                            {% endif %}
+                                          </a>
+                                          <div class="card-body">
+                                            <a href ="{{mix.get_absolute_url}}">
+                                              <h4 class="card-title"><u>{{mix.title}}</u></h4>
+                                            </a>
+                                            <a href="{% url 'profile' mix.uploader.pk %}">
+                                              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user mr-1"><u></i>{{mix.uploader}}</u></h6>
+                                            </a>
+                                            <div class="d-flex justify-content-between mb-2 text-muted">
+                                              <small>
+                                                <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}
+                                              </small>
+                                              <small>
+                                                <i class="fas fa-headphones mr-2"></i>{{ mix.play_count }} Listen{{mix.play_count|pluralize}}
+                                              </small>
+                                              <small>
+                                                <i class="fas fa-heart mr-2"></i>{{mix.like_count}} Like{{mix.like_count|pluralize}}
+                                              </small>
+                                            </div>
+                                            <p>{{mix.description}}</p>
+                                          </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                        </div>	
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="bg-light p-2 rounded">
+                                <h3>{{ profile.user.username }}'s Followees</h3>
+                                <ul class="list-group list-group-flush">	
+                                    {% for f in follows.all %}
+                                    {% if profile == f.owner %}
+                                    <li><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                        </div>
+                    </div>
+    </div>
 	<div class="col-lg-0"></div>
 		<!--
 		Unused fields:
@@ -109,6 +123,5 @@
 	    <h1>Full Name: {{ profile.user.get_full_name }}</h1>
 	    <h1>Email: {{ profile.user.email }}</h1>
 	-->
-</div>
 </div>
 {% endblock %}

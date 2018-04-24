@@ -6,3 +6,15 @@ div {
 div.mixes {
 	overflow: auto;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.container {
+    position: relative;
+    bottom: 20px;
+
+    width: 75%;
+    border: 0px solid #8AC007;
+}
