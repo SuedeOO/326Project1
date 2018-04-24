@@ -20,8 +20,8 @@
 				<div class="tab-pane">
 					{% for result in r_EP.all %}
 						<a href="{% url 'profile' result.id%}" class="list-group-item">
-							{% if user.profile.profile_image %}
-	                            <img src="{{ user.profile.profile_image.url }}">
+							{% if result.profile.profile_image %}
+	                            <img src="{{ result.profile_image.url }}">
 	                        {% else %}
 	                            <img src="http://via.placeholder.com/20x20">
 	                        {% endif %}
