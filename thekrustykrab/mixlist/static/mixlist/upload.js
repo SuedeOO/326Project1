@@ -11,9 +11,10 @@ $("#tag-add").click(function(){
 });
 
 $("#scrub-bar").click(function(){    
-    let newTime = this.value;
+    var newTime = this.value;
     $("#tag-new-time").val(secToHMS(newTime));
-    file.currentTime = newTime;    
+    file.currentTime = newTime;
+    $("#scrub-bar").select();
 });
 
 $("#id_json").hide();
@@ -23,7 +24,7 @@ var tags = [];
 
 function addTag(){
     var tag = {};
-    tag.time = parseInt($("#scrub-bar").val());
+    tag.time = HMSToSec($("#tag-new-time").val());
     tag.title = $("#tag-new-title").val();
     //tag.title = tag.title.replace(/&#39;/g, "\'");
     //tag.title = tag.title.replace(/&#34;/g, "\"");
@@ -63,7 +64,11 @@ function addExistingTag(time, title, artist, links){
 
 function validate(tag){
     var isValid = true;
-   
+    if(!/[0-9][0-9]:[0-6][0-9]:[0-6][0-9]/.test($("#tag-new-time").val()) || tag.time < 0 || tag.time > $("#scrub-bar").attr("max")){
+        $("#tag-new-time").addClass("is-invalid");
+        isValid = false;
+    }
+               
     for(i = 0; i < tags.length; i++) {  
         if(tag.time === tags[i].time){
             $("#tag-new-time").addClass("is-invalid");
