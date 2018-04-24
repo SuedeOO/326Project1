@@ -4,6 +4,11 @@ let reversePlaylist = playlist.slice().reverse(); // useful for current track
 var currentSong = null;
 var hasClickedPlay = false;
 
+$("#scrub-bar").click(function(){    
+    let newTime = this.value;
+    file.currentTime = newTime;    
+});
+
 for (var i = 0; i < trackTimestamps.length; i++) {
     trackTimestamps[i].onclick = (aTag) => {
         let seconds = parseInt(aTag.target.dataset.time);
@@ -54,9 +59,8 @@ let updateTime = (timestamp) => {
 }
 
 let updateProgressBar = (timestamp) => {
-    let progressBar = document.getElementById("progressBar");
-    let pct = 100 * timestamp / file.duration;
-    progressBar.style.width = pct + "%";
+    $("#scrub-bar").val(timestamp);
+    $("#scrub-bar").change();
 }
 
 let linkToButtonMapper = (link) => {
