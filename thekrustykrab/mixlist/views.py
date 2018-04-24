@@ -169,6 +169,12 @@ def addrecentPlayed(request, mix_id):
         user.recentPlayed.add(mix_id)
     user.save()
     return HttpResponse('')
+def removeRecentPlayed(request):
+    user = request.user.profile
+    user.recentPlayed.clear()
+    user.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
 
 def add_comment(request, slug):
     mix = Mix.objects.get(slug=slug)

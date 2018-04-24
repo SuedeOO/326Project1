@@ -9,12 +9,12 @@
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'mixlist/edit_profile.css' %}" />{% endblock %}
 
 {% block content %}
-<div class="jumbotron" style="background-image: url(https://s7.postimg.cc/4npaivkez/edit-page.jpg);">
+
 <form method="post">
   {% csrf_token %}
   {{ user_form.as_p }}
   {{ profile_form.as_p }}
   <button type="submit">Save changes</button>
 </form>
-</div>
+
 {% endblock %}
