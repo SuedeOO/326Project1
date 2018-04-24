@@ -80,7 +80,7 @@ class CreateMixView(generic.CreateView):
     def form_valid(self, form):
         form.instance.slug = slugify(form.instance.title)
         form.instance.uploader = self.request.user.profile
-        form.instance.length = timedelta()
+        form.instance.length = timedelta(seconds=float(self.request.POST['length']))
         form.save()
         return redirect('/edit/' + form.instance.slug)
 
