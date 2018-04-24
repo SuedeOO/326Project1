@@ -47,9 +47,11 @@ function addExistingTag(time, title, artist, links){
     title = title.replace(/&#39;/g, "\'");
     title = title.replace(/&#34;/g, "\"");
     title = title.replace(/&quot;/g, "\"");
+    title = title.replace(/&amp;/g, "&");
     artist = artist.replace(/&#39;/g, "\'");
     artist = artist.replace(/&#34;/g, "\"");
     artist = artist.replace(/&quot;/g, "\"");
+    artist = artist.replace(/&amp;/g, "&");
     
     var tag = {};
     tag.time = HMSToSec(time);
@@ -120,7 +122,7 @@ function displayTags(){
         var par = $(this).parent().parent();        
         var i = parseInt(par.attr("id").substr(3,3));       
         $("#scrub-bar").val(tags[i].time);
-        $("#scrub-bar").change();    
+        $("#tag-new-time").val(secToHMS($("#scrub-bar").val()));   
         $("#tag-new-title").val(tags[i].title);
         $("#tag-new-artist").val(tags[i].artist);    
         $("#tag-new-links").val(getLinks(tags[i]));

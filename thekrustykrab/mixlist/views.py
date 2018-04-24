@@ -196,8 +196,7 @@ from .forms import EditMixForm
 def edit_mix(request, slug):
  
     def get_track(tag):
-        trackQuery = Track.objects.filter(title=tag['title'], artist=tag['artist'])
-        print(tag['title'])
+        trackQuery = Track.objects.filter(title=tag['title'], artist=tag['artist'])        
         if len(trackQuery) >= 1: 
             track = trackQuery[0]
             track = Track.objects.get(title=tag['title'], artist=tag['artist'])
