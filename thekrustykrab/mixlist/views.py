@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from datetime import timedelta
 from django.contrib.auth.forms import UserChangeForm 
+from django.contrib.auth import login, authenticate
 from django.db.models.functions import Lower
 from django.contrib.auth.models import User
 from mixlist.forms import (
@@ -32,14 +33,17 @@ def Search(request):
 def SignUp(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
             return redirect('/')
 
     else:
         form = RegistrationForm()
-        args = {'form': form}
-        return render(request, 'signup.html', args)
+        return render(request, 'signup.html', {'form': form})
 
 # Create your views here.
 class MixView(generic.DetailView):
