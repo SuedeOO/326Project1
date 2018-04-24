@@ -18,3 +18,7 @@ ul {
     width: 75%;
     border: 0px solid #8AC007;
 }
+
+.card-columns {  
+    column-count: 2;    
+}

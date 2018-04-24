@@ -63,11 +63,21 @@
                                 {% endfor %}
                             </ul>                            
                         </div>
+                        <div class="bg-light p-2 rounded">
+                                <h3>{{ profile.user.username }}'s Followees</h3>
+                                <ul class="list-group list-group-flush">	
+                                    {% for f in follows.all %}
+                                    {% if profile == f.owner %}
+                                    <li><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                         <div class="bg-light p-2 rounded">
                             <h3>{{ profile.user.username }}'s uploaded mixes</h3>				
-                                <div class="card-column">
+                                <div class="card-columns">
                                     {% for mix in mixs %}
                                         <div class="card">
                                           <a href ="{{mix.get_absolute_url}}">
@@ -102,18 +112,7 @@
                                 </div>
                         </div>	
                     </div>
-                    <div class="col-lg-4">
-                        <div class="bg-light p-2 rounded">
-                                <h3>{{ profile.user.username }}'s Followees</h3>
-                                <ul class="list-group list-group-flush">	
-                                    {% for f in follows.all %}
-                                    {% if profile == f.owner %}
-                                    <li><a href="{{f.follows.id}}">{{ f.follows.user.username }}</a></li>
-                                    {% endif %}
-                                    {% endfor %}
-                                </ul>
-                        </div>
-                    </div>
+                    
     </div>
 	<div class="col-lg-0"></div>
 		<!--
