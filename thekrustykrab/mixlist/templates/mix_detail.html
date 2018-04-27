@@ -29,19 +29,25 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <!-- card contents -->
-                            <h4 class="card-title">
-                                {% if user.is_authenticated %}
-                                {% if favoriteMix %}
-                                <a href="{% url 'removeFavorite' mix.id %}?next={{request.path}}" class="text-danger" title="unfavorite mix"><i class="fa fa-heart"></i></a>
-                                {% else %}
-                                <a href="{% url 'addFavorite' mix.id %}?next={{request.path}}" class="text-danger" title="favorite mix"><i class="far fa-heart"></i></a>
+                            <h4 class="card-title d-flex justify-content-between">
+                                <div>
+                                    {% if user.is_authenticated %}
+                                    {% if favoriteMix %}
+                                    <a href="{% url 'removeFavorite' mix.id %}?next={{request.path}}" class="text-danger" title="unfavorite mix"><i class="fa fa-heart"></i></a>
+                                    {% else %}
+                                    <a href="{% url 'addFavorite' mix.id %}?next={{request.path}}" class="text-danger" title="favorite mix"><i class="far fa-heart"></i></a>
+                                    {% endif %}
+                                    {% endif %}
+                                    {{mix.title}}
+                                </div>
+                                {% if mix.artist != None %}
+                                <div class="text-muted">
+                                    by <a class="text-muted" href="{% url 'Search' %}?inputQuery={{mix.artist}}">{{mix.artist}}</a>
+                                </div>
                                 {% endif %}
-                                {% endif %}
-                                {{mix.title}}
-                            </h5>
-                                
+                            </h5>                                
                                 <a class="card-subtitle mb-2 text-muted" href="{{mix.uploader.get_absolute_url}}"><i class="fas fa-user mr-1"></i>{{mix.uploader}}</a>
-                                <h1 id="username">{{ profile.user.username }}</h1>
+                                <h1 id="username">{{ profile.user.username }}</h1>                                
                                 <div class="d-flex justify-content-between mb-2 text-muted">
                                     <small>
                                         <i class="fas fa-calendar mr-2"></i>{{mix.upload_date|date}}

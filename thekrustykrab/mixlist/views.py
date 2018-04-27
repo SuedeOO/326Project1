@@ -28,7 +28,8 @@ def Search(request):
         
         r_exactM = Mix.objects.filter(title__exact=query)
         r_Mixes = Mix.objects.filter(title__contains=query).order_by('-play_count').exclude(id__in=r_exactM)
-    return render(request, 'search.html', {'q':query, 'r_P': r_Profile,'r_M':r_Mixes, 'r_EP':r_exactP, 'r_EM':r_exactM})
+        r_MixArtists = Mix.objects.filter(artist__contains=query).order_by('-play_count').exclude(id__in=r_Mixes).exclude(id__in=r_exactM)
+    return render(request, 'search.html', {'q':query, 'r_P': r_Profile,'r_M':r_Mixes, 'r_EP':r_exactP, 'r_EM':r_exactM, 'r_MA':r_MixArtists})
 
 def SignUp(request):
     if request.method == 'POST':

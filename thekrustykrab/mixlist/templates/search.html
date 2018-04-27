@@ -50,7 +50,10 @@
 							{% else %}
 								<img src="http://via.placeholder.com/20x20">
 							{% endif %}
-							{{mix.title}}
+							{% if mix.artist != None %}
+                               {{mix.artist}} - 
+                            {% endif %}
+                            {{mix.title}}
 						</a>
 					{% endfor %}
 					{% for mix in r_M.all %}
@@ -60,7 +63,23 @@
 							{% else %}
 								<img src="http://via.placeholder.com/20x20">
 							{% endif %}
-							{{mix.title}}
+							{% if mix.artist != None %}
+                               {{mix.artist}} - 
+                            {% endif %}
+                            {{mix.title}}
+						</a>
+					{% endfor %}
+                    {% for mix in r_MA.all %}
+						<a href="{{ mix.get_absolute_url }}" class="list-group-item">
+							{% if mix.image %}
+								<img src="{{mix.image.url}}">
+							{% else %}
+								<img src="http://via.placeholder.com/20x20">
+							{% endif %}
+							{% if mix.artist != None %}
+                               {{mix.artist}} - 
+                            {% endif %}
+                            {{mix.title}}                            
 						</a>
 					{% endfor %}
 				</div>
