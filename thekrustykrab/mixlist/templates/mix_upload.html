@@ -16,13 +16,25 @@
             {{ form.as_table }}
         </table>
         <input type="hidden" id="duration" name="length" value="0">
-        <input type="submit" value="Submit" />
-    </form>
-
+        <input class="btn btn-outline-success my-2 my-sm-0 text-muted" type="submit" value="Submit" />
+    </form>    
+    
 </div>
 
 {% endblock %}
 
 {% block javascript %}
+    <script>
+        $("#id_title").addClass("form-control");        
+        $("#id_audio_file").parent().html(`
+        <label class="btn btn-outline-success my-2 my-sm-0 text-muted" for="id_audio_file">
+        ` + $("#id_audio_file").parent().html() + `        
+        Choose File
+        </label>
+        <span class='label label-info' id="file-name"></span>            
+        `); 
+        $("#id_audio_file").hide();
+        $("#id_audio_file").change(function(){$('#file-name').html(this.files[0].name)});
+    </script>
     <script src="{% static 'mixlist/fileduration.js' %}"></script>	
 {% endblock %}
