@@ -40,7 +40,7 @@
                                     {% endif %}
                                     {{mix.title}}
                                 </div>
-                                {% if mix.artist != None %}
+                                {% if mix.artist != None and mix.artist != "" %}
                                 <div class="text-muted">
                                     by <a class="text-muted" href="{% url 'Search' %}?inputQuery={{mix.artist}}">{{mix.artist}}</a>
                                 </div>
