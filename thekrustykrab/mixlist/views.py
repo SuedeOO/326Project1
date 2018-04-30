@@ -80,7 +80,7 @@ class UploadMixView(generic.TemplateView):
 class CreateMixView(generic.CreateView):
     model = Mix
     template_name = 'mix_upload.html'
-    fields = ('title', 'audio_file')
+    fields = ('title', 'audio_file', 'image')
 
     def form_valid(self, form):
         form.instance.slug = slugify(form.instance.title)

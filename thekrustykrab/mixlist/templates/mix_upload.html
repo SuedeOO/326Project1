@@ -31,10 +31,20 @@
         ` + $("#id_audio_file").parent().html() + `        
         Choose File
         </label>
-        <span class='label label-info' id="file-name"></span>            
+        <span class='label label-info' id="audio_file-name"></span>            
         `); 
         $("#id_audio_file").hide();
-        $("#id_audio_file").change(function(){$('#file-name').html(this.files[0].name)});
+        $("#id_audio_file").change(function(){$('#audio_file-name').html(this.files[0].name)});
+        
+        $("#id_image").parent().html(`
+        <label class="btn btn-outline-success my-2 my-sm-0 text-muted" for="id_image">
+        ` + $("#id_image").parent().html() + `        
+        Choose File
+        </label>
+        <span class='label label-info' id="image_file-name"></span>            
+        `); 
+        $("#id_image").hide();
+        $("#id_image").change(function(){$('#image_file-name').html(this.files[0].name)});
     </script>
     <script src="{% static 'mixlist/fileduration.js' %}"></script>	
 {% endblock %}
